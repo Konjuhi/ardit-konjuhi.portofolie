@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1048" height="345" viewBox="0 0 1048 345" role="img" aria-labelledby="title desc">
+  <title id="title">Pichler Automobile logo style</title>
+  <desc id="desc">Dark blue background with silver shield and Pichler Automobile wordmark</desc>
+  <rect width="1048" height="345" fill="#0a1436"/>
+
+  <g transform="translate(78 45)" fill="none" stroke="#c7ccd3" stroke-width="10">
+    <path d="M124 0L207 14V114C207 183 171 236 124 255C77 236 41 183 41 114V14L124 0Z"/>
+    <path d="M124 32L181 42V110C181 161 156 199 124 214C92 199 67 161 67 110V42L124 32Z" stroke-width="7"/>
+  </g>
+
+  <text x="330" y="156" font-family="Arial, Helvetica, sans-serif" font-size="118" font-weight="700" fill="#c7ccd3" letter-spacing="2">PICHLER</text>
+  <text x="333" y="236" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="500" fill="#c7ccd3" letter-spacing="21">AUTOMOBILE</text>
+</svg>

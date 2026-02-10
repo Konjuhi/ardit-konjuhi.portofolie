@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Hattie Bs style logo</title>
+  <desc id="desc">White HB monogram in a circle on red background</desc>
+  <rect width="256" height="256" fill="#df3a22"/>
+  <circle cx="128" cy="128" r="96" fill="none" stroke="#fff" stroke-width="8"/>
+  <text x="128" y="154" text-anchor="middle" fill="#fff" font-size="58" font-weight="700" font-family="Arial, Helvetica, sans-serif">H+B</text>
+</svg>

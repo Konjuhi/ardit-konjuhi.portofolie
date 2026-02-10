@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">PayByPhone style logo</title>
+  <desc id="desc">Green 3 by 3 rounded square grid</desc>
+  <rect width="256" height="256" fill="#07270f"/>
+  <g fill="#41da00" transform="translate(49 49)">
+    <rect x="0" y="0" width="46" height="46" rx="12"/>
+    <rect x="56" y="0" width="46" height="46" rx="12"/>
+    <rect x="112" y="0" width="46" height="46" rx="12"/>
+    <rect x="0" y="56" width="46" height="46" rx="12"/>
+    <rect x="56" y="56" width="46" height="46" rx="12"/>
+    <rect x="112" y="56" width="46" height="46" rx="12"/>
+    <rect x="0" y="112" width="46" height="46" rx="12"/>
+    <rect x="56" y="112" width="46" height="46" rx="12"/>
+    <rect x="112" y="112" width="46" height="46" rx="12"/>
+  </g>
+</svg>
