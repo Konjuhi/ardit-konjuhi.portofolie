@@ -260,6 +260,24 @@ function App() {
   const handleNavClick = (sectionId: string) => {
     setActiveNav(sectionId)
     setNavLockTarget(sectionId)
+
+    const section = document.getElementById(sectionId)
+    if (!section) {
+      return
+    }
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const navOffset = 96
+    const targetY = Math.max(0, section.getBoundingClientRect().top + window.scrollY - navOffset)
+
+    if (prefersReducedMotion) {
+      window.scrollTo(0, targetY)
+      window.history.replaceState(null, '', `#${sectionId}`)
+      return
+    }
+
+    window.scrollTo({ top: targetY, behavior: 'smooth' })
+    window.history.replaceState(null, '', `#${sectionId}`)
   }
 
   return (
@@ -269,27 +287,54 @@ function App() {
           Ardit Konjuhi
         </a>
         <nav>
-          <a className={activeNav === 'projects' ? 'active' : ''} href="#projects" onClick={() => handleNavClick('projects')}>
+          <a
+            className={activeNav === 'projects' ? 'active' : ''}
+            href="#projects"
+            onClick={(event) => {
+              event.preventDefault()
+              handleNavClick('projects')
+            }}
+          >
             Projects
           </a>
           <a
             className={activeNav === 'experience' ? 'active' : ''}
             href="#experience"
-            onClick={() => handleNavClick('experience')}
+            onClick={(event) => {
+              event.preventDefault()
+              handleNavClick('experience')
+            }}
           >
             Experience
           </a>
           <a
             className={activeNav === 'education' ? 'active' : ''}
             href="#education"
-            onClick={() => handleNavClick('education')}
+            onClick={(event) => {
+              event.preventDefault()
+              handleNavClick('education')
+            }}
           >
             Education
           </a>
-          <a className={activeNav === 'cv' ? 'active' : ''} href="#cv" onClick={() => handleNavClick('cv')}>
+          <a
+            className={activeNav === 'cv' ? 'active' : ''}
+            href="#cv"
+            onClick={(event) => {
+              event.preventDefault()
+              handleNavClick('cv')
+            }}
+          >
             CV
           </a>
-          <a className={activeNav === 'contact' ? 'active' : ''} href="#contact" onClick={() => handleNavClick('contact')}>
+          <a
+            className={activeNav === 'contact' ? 'active' : ''}
+            href="#contact"
+            onClick={(event) => {
+              event.preventDefault()
+              handleNavClick('contact')
+            }}
+          >
             Contact
           </a>
           <button
