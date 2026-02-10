@@ -180,6 +180,8 @@ function App() {
     localStorage.setItem('theme-mode', theme)
   }, [theme])
 
+  const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
+
   useEffect(() => {
     const revealElements = Array.from(document.querySelectorAll<HTMLElement>('.reveal'))
 
@@ -214,7 +216,7 @@ function App() {
     <div className="site-shell">
       <header className="top-nav">
         <a className="brand" href="#top">
-          ardit-konjuhi.portofolie.app
+          Ardit Konjuhi
         </a>
         <nav>
           <a href="#projects">Projects</a>
@@ -246,7 +248,12 @@ function App() {
               <a className="btn btn-primary" href="#projects">
                 View Projects
               </a>
-              <a className="btn btn-secondary" href="/Ardit-Konjuhi-CV.pdf" target="_blank" rel="noreferrer noopener">
+              <a
+                className="btn btn-secondary"
+                href={asset('/Ardit-Konjuhi-CV.pdf')}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
                 Download CV
               </a>
             </div>
@@ -260,7 +267,7 @@ function App() {
             </div>
           </div>
           <div className="hero-media">
-            <img src="/ardit-konjuhi-headshot.jpg" alt="Portrait of Ardit Konjuhi" />
+            <img src={asset('/ardit-konjuhi-headshot.jpg')} alt="Portrait of Ardit Konjuhi" />
           </div>
         </section>
 
@@ -274,7 +281,12 @@ function App() {
               <article className="project-card" key={project.name}>
                 <p className="card-meta">{project.context}</p>
                 <div className="app-logo-wrap">
-                  <img className="app-logo" src={project.logoUrl} alt={project.logoAlt} loading="lazy" />
+                  <img
+                    className="app-logo"
+                    src={project.logoUrl.startsWith('/') ? asset(project.logoUrl) : project.logoUrl}
+                    alt={project.logoAlt}
+                    loading="lazy"
+                  />
                 </div>
                 <h3>{project.name}</h3>
                 <ul>
@@ -429,13 +441,18 @@ function App() {
             <h2>Preview and download</h2>
           </div>
           <div className="cv-frame-wrap">
-            <iframe title="Ardit Konjuhi CV" src="/Ardit-Konjuhi-CV.pdf#view=FitH" />
+            <iframe title="Ardit Konjuhi CV" src={`${asset('/Ardit-Konjuhi-CV.pdf')}#view=FitH`} />
           </div>
           <div className="cv-actions">
-            <a className="btn btn-primary" href="/Ardit-Konjuhi-CV.pdf" target="_blank" rel="noreferrer noopener">
+            <a
+              className="btn btn-primary"
+              href={asset('/Ardit-Konjuhi-CV.pdf')}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
               Open CV in New Tab
             </a>
-            <a className="btn btn-secondary" href="/Ardit-Konjuhi-CV.pdf" download>
+            <a className="btn btn-secondary" href={asset('/Ardit-Konjuhi-CV.pdf')} download>
               Download CV
             </a>
           </div>
