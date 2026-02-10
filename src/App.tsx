@@ -210,6 +210,12 @@ function App() {
     }
 
     const getCurrentSection = () => {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight
+      const atPageBottom = window.scrollY >= maxScroll - 2
+      if (atPageBottom) {
+        return 'contact'
+      }
+
       const offset = 170
       const scrollAnchor = window.scrollY + offset
       let currentSection = navSectionIds[0]
@@ -247,7 +253,9 @@ function App() {
         if (targetSection) {
           const rect = targetSection.getBoundingClientRect()
           const reachOffset = 130
-          const reached = rect.top <= reachOffset && rect.bottom > reachOffset
+          const maxScroll = document.documentElement.scrollHeight - window.innerHeight
+          const atPageBottom = window.scrollY >= maxScroll - 2
+          const reached = rect.top <= reachOffset && (rect.bottom > reachOffset || atPageBottom)
           if (reached) {
             setActiveNav(navLockTarget)
             setNavLockTarget(null)
