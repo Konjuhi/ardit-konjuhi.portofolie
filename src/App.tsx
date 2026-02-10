@@ -234,14 +234,6 @@ function App() {
       setShowTop(window.scrollY > 600)
 
       if (navLockTarget) {
-        const lockAge = navLockStartedAtRef.current ? Date.now() - navLockStartedAtRef.current : 0
-        if (lockAge > 1200) {
-          setNavLockTarget(null)
-          navLockStartedAtRef.current = null
-          setActiveNav(getCurrentSection())
-          return
-        }
-
         const targetSection = document.getElementById(navLockTarget)
         if (!targetSection) {
           setNavLockTarget(null)
@@ -255,7 +247,8 @@ function App() {
           const reachOffset = 130
           const maxScroll = document.documentElement.scrollHeight - window.innerHeight
           const atPageBottom = window.scrollY >= maxScroll - 2
-          const reached = rect.top <= reachOffset && (rect.bottom > reachOffset || atPageBottom)
+          const closeToTargetTop = Math.abs(rect.top - reachOffset) <= 18
+          const reached = closeToTargetTop || (navLockTarget === 'contact' && atPageBottom)
           if (reached) {
             setActiveNav(navLockTarget)
             setNavLockTarget(null)
