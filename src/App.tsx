@@ -170,6 +170,8 @@ const experiences: ExperienceItem[] = [
 
 function App() {
   const [showTop, setShowTop] = useState(false)
+  const [activeNav, setActiveNav] = useState('projects')
+  const [navLockTarget, setNavLockTarget] = useState<string | null>(null)
   const [theme, setTheme] = useState<ThemeMode>(() => {
     const savedTheme = localStorage.getItem('theme-mode')
     return savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : 'light'
@@ -184,6 +186,7 @@ function App() {
 
   useEffect(() => {
     const revealElements = Array.from(document.querySelectorAll<HTMLElement>('.reveal'))
+    const navSectionIds = ['projects', 'experience', 'education', 'cv', 'contact']
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -198,19 +201,66 @@ function App() {
 
     revealElements.forEach((el) => observer.observe(el))
 
-    const onScroll = () => {
-      setShowTop(window.scrollY > 600)
+    const syncFromHash = () => {
+      const hash = window.location.hash.replace('#', '')
+      if (hash && navSectionIds.includes(hash)) {
+        setActiveNav(hash)
+        setNavLockTarget(hash)
+      }
     }
 
+    const getCurrentSection = () => {
+      const offset = 170
+      const scrollAnchor = window.scrollY + offset
+      let currentSection = navSectionIds[0]
+
+      navSectionIds.forEach((id) => {
+        const section = document.getElementById(id)
+        if (section && scrollAnchor >= section.offsetTop) {
+          currentSection = id
+        }
+      })
+
+      return currentSection
+    }
+
+    const onScroll = () => {
+      setShowTop(window.scrollY > 600)
+
+      if (navLockTarget) {
+        const targetSection = document.getElementById(navLockTarget)
+        if (targetSection) {
+          const rect = targetSection.getBoundingClientRect()
+          const reachOffset = 130
+          const reached = rect.top <= reachOffset && rect.bottom > reachOffset
+          if (reached) {
+            setActiveNav(navLockTarget)
+            setNavLockTarget(null)
+          }
+        }
+        return
+      }
+
+      setActiveNav(getCurrentSection())
+    }
+
+    window.addEventListener('hashchange', syncFromHash)
     window.addEventListener('scroll', onScroll)
+    syncFromHash()
     onScroll()
 
     return () => {
       revealElements.forEach((el) => observer.unobserve(el))
       observer.disconnect()
+      window.removeEventListener('hashchange', syncFromHash)
       window.removeEventListener('scroll', onScroll)
     }
-  }, [])
+  }, [navLockTarget])
+
+  const handleNavClick = (sectionId: string) => {
+    setActiveNav(sectionId)
+    setNavLockTarget(sectionId)
+  }
 
   return (
     <div className="site-shell">
@@ -219,11 +269,29 @@ function App() {
           Ardit Konjuhi
         </a>
         <nav>
-          <a href="#projects">Projects</a>
-          <a href="#experience">Experience</a>
-          <a href="#education">Education</a>
-          <a href="#cv">CV</a>
-          <a href="#contact">Contact</a>
+          <a className={activeNav === 'projects' ? 'active' : ''} href="#projects" onClick={() => handleNavClick('projects')}>
+            Projects
+          </a>
+          <a
+            className={activeNav === 'experience' ? 'active' : ''}
+            href="#experience"
+            onClick={() => handleNavClick('experience')}
+          >
+            Experience
+          </a>
+          <a
+            className={activeNav === 'education' ? 'active' : ''}
+            href="#education"
+            onClick={() => handleNavClick('education')}
+          >
+            Education
+          </a>
+          <a className={activeNav === 'cv' ? 'active' : ''} href="#cv" onClick={() => handleNavClick('cv')}>
+            CV
+          </a>
+          <a className={activeNav === 'contact' ? 'active' : ''} href="#contact" onClick={() => handleNavClick('contact')}>
+            Contact
+          </a>
           <button
             className="theme-toggle"
             type="button"

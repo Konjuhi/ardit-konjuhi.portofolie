@@ -25,6 +25,12 @@
   font-size: 1.05rem;
   font-weight: 700;
   letter-spacing: 0.02em;
+  color: var(--link-hover);
+}
+
+.brand:hover,
+.brand:visited {
+  color: var(--link-hover);
 }
 
 .top-nav nav {
@@ -36,10 +42,19 @@
 .top-nav nav a {
   font-weight: 600;
   color: var(--text-soft);
+  border-radius: 999px;
+  padding: 0.28rem 0.55rem;
+  transition: color 180ms ease, background-color 180ms ease;
 }
 
 .top-nav nav a:hover {
   color: var(--text-main);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.top-nav nav a.active {
+  color: var(--link-hover);
+  background: rgba(15, 122, 61, 0.12);
 }
 
 .theme-toggle {
@@ -482,6 +497,14 @@
 }
 
 :root[data-theme='dark'] .theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+:root[data-theme='dark'] .top-nav nav a.active {
+  background: rgba(83, 211, 127, 0.12);
+}
+
+:root[data-theme='dark'] .top-nav nav a:hover {
   background: rgba(255, 255, 255, 0.06);
 }
 
