@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 
 type ThemeMode = 'light' | 'dark'
@@ -172,6 +172,7 @@ function App() {
   const [showTop, setShowTop] = useState(false)
   const [activeNav, setActiveNav] = useState('projects')
   const [navLockTarget, setNavLockTarget] = useState<string | null>(null)
+  const navLockStartedAtRef = useRef<number | null>(null)
   const [theme, setTheme] = useState<ThemeMode>(() => {
     const savedTheme = localStorage.getItem('theme-mode')
     return savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : 'light'
@@ -205,7 +206,6 @@ function App() {
       const hash = window.location.hash.replace('#', '')
       if (hash && navSectionIds.includes(hash)) {
         setActiveNav(hash)
-        setNavLockTarget(hash)
       }
     }
 
@@ -228,7 +228,22 @@ function App() {
       setShowTop(window.scrollY > 600)
 
       if (navLockTarget) {
+        const lockAge = navLockStartedAtRef.current ? Date.now() - navLockStartedAtRef.current : 0
+        if (lockAge > 1200) {
+          setNavLockTarget(null)
+          navLockStartedAtRef.current = null
+          setActiveNav(getCurrentSection())
+          return
+        }
+
         const targetSection = document.getElementById(navLockTarget)
+        if (!targetSection) {
+          setNavLockTarget(null)
+          navLockStartedAtRef.current = null
+          setActiveNav(getCurrentSection())
+          return
+        }
+
         if (targetSection) {
           const rect = targetSection.getBoundingClientRect()
           const reachOffset = 130
@@ -236,6 +251,7 @@ function App() {
           if (reached) {
             setActiveNav(navLockTarget)
             setNavLockTarget(null)
+            navLockStartedAtRef.current = null
           }
         }
         return
@@ -260,6 +276,7 @@ function App() {
   const handleNavClick = (sectionId: string) => {
     setActiveNav(sectionId)
     setNavLockTarget(sectionId)
+    navLockStartedAtRef.current = Date.now()
 
     const section = document.getElementById(sectionId)
     if (!section) {
