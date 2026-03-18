@@ -54,9 +54,9 @@ const featuredProjects: FeaturedProject[] = [
     appStoreUrl: 'https://apps.apple.com/us/app/honeygrow/id1391932075',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.honeygrow.hgmg.android.app&hl=en',
     impact: [
-      'Contributed to an already-built Honeygrow mobile app across App Store and Google Play.',
-      'Implemented menu browsing, customization, secure checkout, rewards, and push notifications.',
-      'Added live activity support for real-time order status updates.',
+      'Contributing to an already-built Honeygrow mobile app across App Store and Google Play.',
+      'Delivering menu browsing, customization, secure checkout, rewards, and push notifications.',
+      'Adding live activity support for real-time order status updates.',
     ],
   },
   {
@@ -68,9 +68,9 @@ const featuredProjects: FeaturedProject[] = [
     appStoreUrl: 'https://apps.apple.com/us/app/hattie-bs-hot-chicken/id1550059818',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.thanx.hattieb&hl=en',
     impact: [
-      "Contributed to Hattie B's mobile app from start to finish (end-to-end).",
-      'Delivered mobile features aligned with brand consistency and high performance.',
-      'Focused on reliable, production-ready app behavior and smooth user flows.',
+      "Contributing to Hattie B's mobile app from start to finish (end-to-end).",
+      'Delivering mobile features aligned with brand consistency and high performance.',
+      'Focusing on reliable, production-ready app behavior and smooth user flows.',
     ],
   },
   {
@@ -79,7 +79,8 @@ const featuredProjects: FeaturedProject[] = [
     context: 'Pichler Automobile',
     logoUrl: '/logos/pichler-automobile-logo.svg',
     logoAlt: 'Pichler Automobile logo',
-    primaryCtaLabel: 'Visit App',
+    primaryCtaLabel: 'Open Web App',
+    appStoreUrl: 'https://apps.apple.com/us/app/pichler-rewards/id6753695664',
     impact: [
       'Built with Flutter for the web experience and aligned mobile app delivery.',
       'Delivered cross-platform support for iOS and Android alongside the web app.',
@@ -90,25 +91,10 @@ const featuredProjects: FeaturedProject[] = [
 
 const experiences: ExperienceItem[] = [
   {
-    company: 'Corpay',
-    companyUrl: 'https://www.corpay.com/',
-    viaLabel: 'via RiTech International AG',
-    viaUrl: 'https://www.ritech.co/',
-    engagement: 'via RiTech International AG',
-    role: 'Senior Flutter Developer',
-    period: 'Jun 2024 - Present',
-    products: [{ name: 'PayByPhone', url: 'https://www.paybyphone.com/', note: 'Powered by Corpay' }],
-    highlights: [
-      'Rewrote the app in Flutter using the Fluxus design system, acting as one of the main developers maintaining design components via Widgetbook.',
-      'Built secure payment features including Google Pay and Apple Pay, plus remote session and EV charging capabilities.',
-      'Supported the migration from native stack toward Flutter for a globally used parking platform.',
-    ],
-  },
-  {
     company: 'Moxie Labs',
     companyUrl: 'https://www.moxielabs.co/#team',
     engagement: 'Remote | Digital Product & Marketing Agency',
-    role: 'Senior Flutter Developer (Freelance)',
+    role: 'Senior Flutter Developer',
     period: 'Jun 2025 - Present',
     products: [
       {
@@ -125,9 +111,24 @@ const experiences: ExperienceItem[] = [
       },
     ],
     highlights: [
-      'Working on food-ordering mobile experiences with support for pickup and delivery.',
+      'Working on Honeygrow and Hattie B mobile experiences with support for pickup and delivery.',
       'Implemented secure checkout, rewards, notifications, and live activity updates.',
       'Collaborating closely with product and engineering teams to keep apps fast and reliable.',
+    ],
+  },
+  {
+    company: 'Corpay',
+    companyUrl: 'https://www.corpay.com/',
+    viaLabel: 'via RiTech International AG',
+    viaUrl: 'https://www.ritech.co/',
+    engagement: 'via RiTech International AG',
+    role: 'Senior Flutter Developer',
+    period: 'Jun 2024 - Mar 2026',
+    products: [{ name: 'PayByPhone', url: 'https://www.paybyphone.com/', note: 'Powered by Corpay' }],
+    highlights: [
+      'Rewrote the app in Flutter using the Fluxus design system, acting as one of the main developers maintaining design components via Widgetbook.',
+      'Built secure payment features including Google Pay and Apple Pay, plus remote session and EV charging capabilities.',
+      'Supported the migration from native stack toward Flutter for a globally used parking platform.',
     ],
   },
   {
