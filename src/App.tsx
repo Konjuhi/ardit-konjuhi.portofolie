@@ -185,6 +185,7 @@ function App() {
   }, [theme])
 
   const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
+  const cvUrl = asset('/Ardit-Konjuhi-CV.pdf?v=20260318-1')
 
   useEffect(() => {
     const revealElements = Array.from(document.querySelectorAll<HTMLElement>('.reveal'))
@@ -382,7 +383,7 @@ function App() {
               </a>
               <a
                 className="btn btn-secondary"
-                href={asset('/Ardit-Konjuhi-CV.pdf')}
+                href={cvUrl}
                 target="_blank"
                 rel="noreferrer noopener"
               >
@@ -573,18 +574,18 @@ function App() {
             <h2>Preview and download</h2>
           </div>
           <div className="cv-frame-wrap">
-            <iframe title="Ardit Konjuhi CV" src={`${asset('/Ardit-Konjuhi-CV.pdf')}#view=FitH`} />
+            <iframe title="Ardit Konjuhi CV" src={`${cvUrl}#view=FitH`} />
           </div>
           <div className="cv-actions">
             <a
               className="btn btn-primary"
-              href={asset('/Ardit-Konjuhi-CV.pdf')}
+              href={cvUrl}
               target="_blank"
               rel="noreferrer noopener"
             >
               Open CV in New Tab
             </a>
-            <a className="btn btn-secondary" href={asset('/Ardit-Konjuhi-CV.pdf')} download>
+            <a className="btn btn-secondary" href={cvUrl} download>
               Download CV
             </a>
           </div>
