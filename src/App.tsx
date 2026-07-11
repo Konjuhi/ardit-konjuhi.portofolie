@@ -181,7 +181,7 @@ const skillGroups: SkillGroup[] = [
   },
   {
     title: 'Backend & data',
-    skills: ['REST APIs', 'GraphQL', 'Firebase', 'Push notifications'],
+    skills: ['REST APIs', 'GraphQL', 'Firebase', 'Supabase', 'Push notifications'],
   },
   {
     title: 'Architecture & delivery',
