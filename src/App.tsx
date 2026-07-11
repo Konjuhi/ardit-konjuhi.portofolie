@@ -177,7 +177,7 @@ const experiences: ExperienceItem[] = [
 const skillGroups: SkillGroup[] = [
   {
     title: 'Languages & frameworks',
-    skills: ['Flutter', 'Dart', 'Mobile Development', 'Android', 'iOS', 'Web'],
+    skills: ['Flutter', 'Dart', 'Swift', 'Kotlin', 'Java', 'Mobile Development', 'Android', 'iOS', 'Web'],
   },
   {
     title: 'Backend & data',
