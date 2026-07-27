@@ -135,7 +135,7 @@ function AskAiChat() {
               value={input}
               rows={1}
               maxLength={MAX_CHAT_CHARS}
-              placeholder={quotaExhausted ? 'Daily limit reached' : 'e.g. How senior is his Flutter experience?'}
+              placeholder={quotaExhausted ? 'Daily limit reached' : 'Ask about Ardit…'}
               aria-label="Ask a question about Ardit"
               disabled={disabled}
               onChange={(event) => {
