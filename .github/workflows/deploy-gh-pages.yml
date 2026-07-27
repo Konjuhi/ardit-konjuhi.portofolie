@@ -17,8 +17,6 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # Needed so the build can read environment secrets (SUPABASE_KEY).
-    environment: github-pages
     steps:
       - name: Checkout
         uses: actions/checkout@v4
