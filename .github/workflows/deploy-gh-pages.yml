@@ -32,6 +32,12 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          # Supabase anon credentials are public by design: they are shipped in
+          # the frontend bundle and protected server-side. Real secrets (LLM API
+          # keys) live only in Supabase Edge Function secrets.
+          VITE_SUPABASE_URL: https://orutyfitgyvjgmwqrnsd.supabase.co
+          VITE_SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ydXR5Zml0Z3l2amdtd3FybnNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUxNzE1NDEsImV4cCI6MjEwMDc0NzU0MX0.dI9PToh4XpZ0w2gvR1CEosKj_U5O78-EJz3KTQYmG98
 
       - name: SPA fallback
         run: cp dist/index.html dist/404.html
