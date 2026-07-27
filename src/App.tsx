@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
+import AskAiChat from './components/AskAiChat'
+import JobFitAssessment from './components/JobFitAssessment'
 import './App.css'
 
 type ThemeMode = 'light' | 'dark'
@@ -199,6 +201,7 @@ const navLinks = [
   { id: 'experience', label: 'Experience' },
   { id: 'cv', label: 'CV' },
   { id: 'education', label: 'Education' },
+  { id: 'ai', label: 'AI Assistant' },
   { id: 'contact', label: 'Contact' },
 ]
 
@@ -300,6 +303,32 @@ function IconGraduationCap() {
   )
 }
 
+function IconBot() {
+  return (
+    <svg className="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 8V4H8" />
+      <rect x="4" y="8" width="16" height="12" rx="2" />
+      <path d="M2 14h2M20 14h2M15 13v2M9 13v2" />
+    </svg>
+  )
+}
+
+function IconClose() {
+  return (
+    <svg className="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M18 6 6 18M6 6l12 12" />
+    </svg>
+  )
+}
+
+function IconMenu() {
+  return (
+    <svg className="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  )
+}
+
 const gridProjects = featuredProjects.slice(0, 3)
 const wideProjects = featuredProjects.slice(3)
 
@@ -312,7 +341,8 @@ function App() {
   const [showTop, setShowTop] = useState(false)
   const [activeNav, setActiveNav] = useState('projects')
   const [navLockTarget, setNavLockTarget] = useState<string | null>(null)
-  const navLockStartedAtRef = useRef<number | null>(null)
+  const [chatOpen, setChatOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
   const [theme, setTheme] = useState<ThemeMode>(() => {
     const savedTheme = localStorage.getItem('theme-mode')
     return savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : 'dark'
@@ -322,6 +352,26 @@ function App() {
     document.documentElement.setAttribute('data-theme', theme)
     localStorage.setItem('theme-mode', theme)
   }, [theme])
+
+  useEffect(() => {
+    if (!chatOpen) {
+      return
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setChatOpen(false)
+      }
+    }
+
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', onKeyDown)
+
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', onKeyDown)
+    }
+  }, [chatOpen])
 
   const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
   const cvUrl = asset('/Ardit-Konjuhi-CV.pdf?v=20260318-2')
@@ -377,7 +427,6 @@ function App() {
         const targetSection = document.getElementById(navLockTarget)
         if (!targetSection) {
           setNavLockTarget(null)
-          navLockStartedAtRef.current = null
           setActiveNav(getCurrentSection())
           return
         }
@@ -391,7 +440,6 @@ function App() {
         if (reached) {
           setActiveNav(navLockTarget)
           setNavLockTarget(null)
-          navLockStartedAtRef.current = null
         }
         return
       }
@@ -415,7 +463,6 @@ function App() {
   const handleNavClick = (sectionId: string) => {
     setActiveNav(sectionId)
     setNavLockTarget(sectionId)
-    navLockStartedAtRef.current = Date.now()
 
     const section = document.getElementById(sectionId)
     if (!section) {
@@ -443,7 +490,29 @@ function App() {
           <a className="brand" href="#top">
             Ardit Konjuhi
           </a>
-          <nav aria-label="Main navigation">
+          <div className="nav-mobile-actions">
+            <button
+              className="ai-nav-btn"
+              type="button"
+              onClick={() => {
+                setMenuOpen(false)
+                setChatOpen(true)
+              }}
+              aria-label="Open AI chat about Ardit"
+            >
+              <IconBot />
+            </button>
+            <button
+              className="nav-burger"
+              type="button"
+              onClick={() => setMenuOpen((prev) => !prev)}
+              aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={menuOpen}
+            >
+              {menuOpen ? <IconClose /> : <IconMenu />}
+            </button>
+          </div>
+          <nav aria-label="Main navigation" className={menuOpen ? 'open' : ''}>
             {navLinks.map((link) => (
               <a
                 key={link.id}
@@ -451,12 +520,23 @@ function App() {
                 href={`#${link.id}`}
                 onClick={(event) => {
                   event.preventDefault()
+                  setMenuOpen(false)
                   handleNavClick(link.id)
                 }}
               >
                 {link.label}
               </a>
             ))}
+            <button
+              className="ai-nav-btn nav-desktop-ai"
+              type="button"
+              onClick={() => setChatOpen(true)}
+              aria-label="Open AI chat about Ardit"
+              aria-expanded={chatOpen}
+            >
+              <IconBot />
+              <span>Ask AI</span>
+            </button>
             <button
               className="theme-toggle"
               type="button"
@@ -776,6 +856,21 @@ function App() {
           </div>
         </section>
 
+        <section id="ai" className="section reveal">
+          <div className="section-head">
+            <p className="eyebrow">AI Assistant</p>
+            <h2>Analyze the job fit</h2>
+            <p className="section-sub">
+              Hiring for a role or a freelance project? Paste the description for an honest AI assessment of how my
+              experience matches. For anything else, ask the <button className="inline-chat-link" type="button" onClick={() => setChatOpen(true)}>AI chat</button> in
+              the top bar.
+            </p>
+          </div>
+          <div className="ai-grid">
+            <JobFitAssessment />
+          </div>
+        </section>
+
         <section id="contact" className="section reveal">
           <div className="contact-card">
             <p className="eyebrow">Contact</p>
@@ -817,6 +912,26 @@ function App() {
           </div>
         </div>
       </footer>
+
+      <div
+        className={`chat-drawer-backdrop ${chatOpen ? 'open' : ''}`}
+        onClick={() => setChatOpen(false)}
+        aria-hidden="true"
+      />
+      <aside className={`chat-drawer ${chatOpen ? 'open' : ''}`} role="dialog" aria-label="AI chat about Ardit" aria-hidden={!chatOpen}>
+        <div className="chat-drawer-head">
+          <div className="chat-drawer-title">
+            <IconBot />
+            <span>Ask AI about Ardit</span>
+          </div>
+          <button className="chat-drawer-close" type="button" onClick={() => setChatOpen(false)} aria-label="Close AI chat">
+            <IconClose />
+          </button>
+        </div>
+        <div className="chat-drawer-body">
+          <AskAiChat />
+        </div>
+      </aside>
 
       <button
         className={`to-top ${showTop ? 'show' : ''}`}
