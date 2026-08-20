@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { askAi, MAX_CHAT_CHARS } from '../lib/askAi'
 import { consumeQuery, getRemainingQueries, MAX_DAILY_QUERIES } from '../lib/aiQuota'
+import { LinkedText } from '../lib/linkify'
 import { isSupabaseConfigured } from '../lib/supabaseClient'
 
 type ChatMessage = {
@@ -27,6 +28,7 @@ const suggestionPool = [
   'What backend tech has he used?',
   'Has he built apps for the EU market?',
   'What is his biggest project so far?',
+  'How many apps has he shipped?',
 ]
 
 function pickRandomSuggestions(): string[] {
@@ -123,7 +125,7 @@ function AskAiChat() {
             ) : (
               messages.map((message, index) => (
                 <p key={`${message.role}-${index}`} className={`chat-msg ${message.role}`}>
-                  {message.text}
+                  {message.role === 'ai' ? <LinkedText text={message.text} /> : message.text}
                 </p>
               ))
             )}

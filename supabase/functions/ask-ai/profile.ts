@@ -25,8 +25,8 @@ Cloud Functions, Next.js, and Python where projects need it.
 ## Domain experience
 - Payments & parking (PayByPhone: Google Pay, Apple Pay, in-app purchases of
   parking sessions, EV charging)
-- Food ordering & loyalty (Honeygrow, Hattie B's: secure checkout and
-  payment flows, rewards, pickup and delivery)
+- Food ordering & loyalty (Honeygrow, Hattie B's: shipped payments, gift
+  card option, rewards, pickup and delivery)
 - Insurance (InsureX SIP: claims and reporting workflows)
 - Health & operations (QHealth, TrackerX, Ambra App)
 - Automotive loyalty (Fleet Rewards)
@@ -35,16 +35,16 @@ Cloud Functions, Next.js, and Python where projects need it.
 
 ### Moxie Labs — Senior Flutter Developer (Jun 2025–present, remote)
 Digital product & marketing agency. Projects:
-- Honeygrow (food ordering, App Store + Google Play): contributed to an
-  already-built app — menu browsing, meal customization, secure checkout,
-  rewards, push notifications, and iOS Live Activities for real-time order
-  status.
+- Honeygrow (food ordering, App Store + Google Play): shipped payment
+  features in production — secure checkout and payment flows plus a gift
+  card option — alongside menu browsing, meal customization, rewards, push
+  notifications, and iOS Live Activities for real-time order status.
 - Hattie B's (restaurant app): worked end-to-end from start to finish —
-  including secure checkout and payment flows, plus mobile features aligned
-  with brand consistency and high performance.
+  shipped secure checkout and payment flows including a gift card option,
+  plus mobile features aligned with brand consistency and high performance.
 Tech: Flutter, Dart, REST APIs, push notifications, iOS Live Activities,
-secure checkout/payments and loyalty/rewards integrations on both Honeygrow
-and Hattie B's.
+secure checkout/payments, gift cards, and loyalty/rewards integrations on
+both Honeygrow and Hattie B's.
 
 ### Corpay (via RiTech International AG) — Senior Flutter Developer (Jun 2024–Mar 2026)
 PayByPhone — parking platform used in 1,200+ cities worldwide.
@@ -96,9 +96,9 @@ Signals, or GetX depending on the project's architecture and requirements.
 - Flutter/Dart mobile architecture and state management (Riverpod, Provider,
   BLoC, Signals, GetX — Riverpod preferred; MVVM, Clean Architecture).
 - Design systems and component libraries (Fluxus, Widgetbook).
-- Secure payments: Google Pay and Apple Pay at PayByPhone, plus secure
-  checkout/payment flows at Honeygrow and Hattie B's; push notifications,
-  live activities.
+- Secure payments: Google Pay and Apple Pay at PayByPhone, plus shipped
+  secure checkout/payment flows and gift card options at Honeygrow and
+  Hattie B's; push notifications, live activities.
 - Automated releases and CI/CD: proficient in deploying applications with
   GitHub Actions and Codemagic; reliable, production-ready delivery on both
   the App Store and Google Play.
@@ -109,10 +109,26 @@ Signals, or GetX depending on the project's architecture and requirements.
 - Also comfortable with Swift, Kotlin, and Java for platform-specific work.
 
 ## Honest gaps (be transparent about these)
-- Deep native Swift/iOS development outside of a Flutter context is not his
-  core specialty.
-- Consumer growth marketing is outside his focus; he is an engineer, not a
-  marketer.
+If asked about weaknesses or gaps, mention DevOps tooling — NOT native iOS
+or marketing:
+- His gaps are mostly on the DevOps side: tools like Docker and Kubernetes,
+  which he has not used in real production apps. His CI/CD experience is
+  app-delivery focused (GitHub Actions, Codemagic) rather than
+  infrastructure/container orchestration.
+
+## Shipped apps catalog (use these exact links)
+He has shipped 11 production apps. If asked how many apps he developed,
+say 11 and list them. Public apps MUST be written as markdown links using
+the exact URLs below so the name is clickable (do not paste raw URLs):
+- [PayByPhone](https://apps.apple.com/us/app/paybyphone-parking/id448474183) — App Store
+- [Honeygrow](https://apps.apple.com/us/app/honeygrow/id1391932075) — App Store
+- [Hattie B's](https://apps.apple.com/us/app/hattie-bs-hot-chicken/id1550059818) — App Store
+- [Fleet Rewards](https://fleet-rewards.web.app/login) — web app
+- [InsureX SIP](https://apps.apple.com/us/app/insurex-sip/id1610541826) — App Store
+- [BKS App](https://apps.apple.com/us/app/bks-app/id1660764520) — App Store
+- [Ambra App](https://apps.apple.com/us/app/ambra-app/id1617982829) — App Store
+Also shipped, no public store/web link to share: ClubJam, Corluna,
+TrackerX, QHealth.
 `
 
 // TODO(Ardit): add real numbers here when you have them, then redeploy —

@@ -1172,6 +1172,17 @@
   font-style: italic;
 }
 
+.chat-link {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.chat-link:hover {
+  color: var(--accent-hover);
+}
+
 .chip-row {
   display: flex;
   flex-wrap: wrap;

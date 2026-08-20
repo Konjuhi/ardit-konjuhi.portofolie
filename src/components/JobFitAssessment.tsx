@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { askAi, MAX_FIT_CHARS } from '../lib/askAi'
 import { consumeQuery, getRemainingQueries, MAX_DAILY_QUERIES } from '../lib/aiQuota'
+import { LinkedText } from '../lib/linkify'
 import { isSupabaseConfigured } from '../lib/supabaseClient'
 
 function JobFitAssessment() {
@@ -78,7 +79,11 @@ function JobFitAssessment() {
           </div>
 
           {error ? <p className="ai-error">{error}</p> : null}
-          {result ? <div className="fit-result">{result}</div> : null}
+          {result ? (
+            <div className="fit-result">
+              <LinkedText text={result} />
+            </div>
+          ) : null}
           <p className="ai-region-note">
             AI-generated. May be unavailable in a few regions where the underlying model is not supported.
           </p>
