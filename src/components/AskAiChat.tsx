@@ -18,11 +18,20 @@ const suggestionPool = [
   'Has he built food ordering apps?',
   'How does he structure his apps?',
   'Has he shipped to both app stores?',
+  'How many years of experience does he have?',
+  'Which state management does he use?',
+  'Has he done Flutter web development?',
+  'What CI/CD tools does he use?',
+  'Is he available for freelance work?',
+  'Has he worked with BLoC or Riverpod?',
+  'What backend tech has he used?',
+  'Has he built apps for the EU market?',
+  'What is his biggest project so far?',
 ]
 
 function pickRandomSuggestions(): string[] {
   const shuffled = [...suggestionPool].sort(() => Math.random() - 0.5)
-  return shuffled.slice(0, 3)
+  return shuffled.slice(0, 4)
 }
 
 function AskAiChat() {

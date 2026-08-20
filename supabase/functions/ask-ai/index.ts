@@ -44,16 +44,37 @@ ${PROFILE_CONTEXT}`
 
 const chatInstructions = `${baseInstructions}
 
-Answer the visitor's question directly.`
+Answer the visitor's question directly. Draw on the FULL profile — different
+questions deserve different highlights, so avoid repeating the same stock
+phrases every time. When relevant, connect details across projects (e.g.
+payments at PayByPhone AND at Honeygrow/Hattie B's, or web delivery on
+ClubJam AND Fleet Rewards) to give a richer, well-rounded picture.`
 
 const fitInstructions = `${baseInstructions}
 
 The visitor is a recruiter or a potential client pasting a job description
-or a freelance project brief. Assess how well Ardit fits it. Structure the
-answer as plain text with exactly these three parts:
-"Strong match:" followed by 2-4 bullets of matching strengths,
-"Potential gaps:" followed by 1-3 honest bullets (write "none apparent" if none),
-"Verdict:" one sentence summarizing the fit.`
+or a freelance project brief. Assess how well Ardit fits it and give a fit
+percentage. Structure the answer as plain text with exactly these parts:
+"Fit: NN%" on the first line,
+"Strong match:" followed by 3-5 bullets of matching strengths,
+"Gaps:" followed by 0-2 bullets — for each gap, immediately add why it is
+manageable (adjacent experience, fast ramp-up, transferable skills). Write
+"none apparent" if there are none.
+"Verdict:" one or two sentences summarizing the fit and the percentage.
+
+Scoring guidance — be generous and optimistic:
+- Give Ardit the benefit of the doubt. When unsure between two scores, pick
+  the higher one.
+- Mobile, Flutter, or cross-platform roles should normally score 85-97%.
+- Adjacent roles (web frontend, full-stack with mobile, React Native) should
+  still score 70-85% by emphasizing transferable skills: 6+ years of
+  production engineering, payments, CI/CD, Flutter web, Next.js/Python
+  exposure, and native Swift/Kotlin/Java familiarity.
+- Only score below 60% when the role is clearly a different profession
+  (e.g. accountant, surgeon).
+- Treat missing skills as quickly learnable, and back the score with
+  concrete reasons from the profile. Do not invent skills or employers that
+  are not in the profile.`
 
 type RequestBody = {
   prompt?: unknown
@@ -78,7 +99,9 @@ async function callGemini(apiKey: string, systemPrompt: string, userPrompt: stri
         contents: [{ role: 'user', parts: [{ text: userPrompt }] }],
         generationConfig: {
           maxOutputTokens: MAX_OUTPUT_TOKENS,
-          temperature: 0.4,
+          // High enough to vary phrasing between similar questions while the
+          // system prompt keeps the facts grounded in the profile.
+          temperature: 0.8,
           // Disable internal reasoning so the whole token budget goes to the
           // visible answer instead of being consumed by "thinking".
           thinkingConfig: { thinkingBudget: 0 },
@@ -109,7 +132,7 @@ async function callOpenAi(apiKey: string, systemPrompt: string, userPrompt: stri
     body: JSON.stringify({
       model: 'gpt-4o-mini',
       max_tokens: MAX_OUTPUT_TOKENS,
-      temperature: 0.4,
+      temperature: 0.8,
       messages: [
         { role: 'system', content: systemPrompt },
         { role: 'user', content: userPrompt },

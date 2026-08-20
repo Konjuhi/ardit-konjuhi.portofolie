@@ -556,8 +556,9 @@ function App() {
             <p className="eyebrow">Flutter Engineer</p>
             <h1>Building reliable mobile products that people use every day.</h1>
             <p className="intro">
-              Experienced Flutter Developer with 5+ years of professional experience and a Computer Engineering
-              background. Focused on production-ready architecture, clean code, and scalable mobile delivery.
+              Software engineer with 6+ years of professional experience — more than 5 of them building Flutter apps
+              for mobile and web — and a Computer Engineering background. Focused on production-ready architecture,
+              clean code, and scalable delivery.
             </p>
             <div className="cta-row">
               <a
