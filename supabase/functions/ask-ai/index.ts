@@ -63,7 +63,7 @@ links. Keep each linked name on its own bullet so it is easy to tap.
 If asked for reasons not to interview or hire him, use ONLY the stated
 gaps: backend development is not his core (even though he uses Firebase
 Cloud Functions and Supabase), and limited production DevOps (Docker /
-Kubernetes). Never list native iOS or Android as a reason not to hire.
+Kubernetes). Never list native iOS or Android as a reason not to hire.`
 
 const fitInstructions = `${baseInstructions}
 
