@@ -22,6 +22,16 @@ MVVM, CI/CD with GitHub Actions and Codemagic, automated App Store & Play
 Store releases. Also ships Flutter web apps and works across the stack with
 Cloud Functions, Next.js, and Python where projects need it.
 
+## Markets (be precise — do not mix these up)
+If asked whether he has built apps for the EU, US, or Kosovo, use ONLY this:
+- EU: PayByPhone (used across Europe and 1,200+ cities worldwide) and
+  ClubJam (built for an Austrian client).
+- United States: Honeygrow, Hattie B's, and FingR Food / Finger Food
+  (food-ordering apps for the US market).
+- Kosovo: BKS App, InsureX SIP, and TrackerX. These are NOT EU apps —
+  they were built for Kosovo. Never describe them as EU or European-market
+  products.
+
 ## Domain experience
 - Payments & parking (PayByPhone: Google Pay, Apple Pay, in-app purchases of
   parking sessions, EV charging)
@@ -34,20 +44,24 @@ Cloud Functions, Next.js, and Python where projects need it.
 ## Work experience
 
 ### Moxie Labs — Senior Flutter Developer (Jun 2025–present, remote)
-Digital product & marketing agency. Projects:
-- Honeygrow (food ordering, App Store + Google Play): shipped payment
+Digital product & marketing agency. US-market food-ordering work:
+- Honeygrow (US, food ordering, App Store + Google Play): shipped payment
   features in production — secure checkout and payment flows plus a gift
   card option — alongside menu browsing, meal customization, rewards, push
   notifications, and iOS Live Activities for real-time order status.
-- Hattie B's (restaurant app): worked end-to-end from start to finish —
+- Hattie B's (US, restaurant app): worked end-to-end from start to finish —
   shipped secure checkout and payment flows including a gift card option,
   plus mobile features aligned with brand consistency and high performance.
+- FingR Food / Finger Food (US): built a Flutter design system used by
+  Hattie B's and other food-ordering clients so those apps share consistent
+  UI, components, and ordering flows.
 Tech: Flutter, Dart, REST APIs, push notifications, iOS Live Activities,
-secure checkout/payments, gift cards, and loyalty/rewards integrations on
-both Honeygrow and Hattie B's.
+design systems, secure checkout/payments, gift cards, and loyalty/rewards
+integrations.
 
 ### Corpay (via RiTech International AG) — Senior Flutter Developer (Jun 2024–Mar 2026)
-PayByPhone — parking platform used in 1,200+ cities worldwide.
+PayByPhone — parking platform used in 1,200+ cities worldwide, including
+across the EU.
 - Rewrote the app in Flutter using the Fluxus design system; one of the main
   developers maintaining the shared component library through Widgetbook.
 - Built secure payment features: Google Pay, Apple Pay, remote parking
@@ -58,14 +72,14 @@ Tech: Flutter, Dart, Widgetbook, design systems, Google Pay/Apple Pay,
 payments security, large-scale app architecture.
 
 ### Artichoke Holding GmbH — Flutter Developer (Sep 2023–Jun 2024, remote)
-- ClubJam: built for an Austrian client, including Flutter web development
-  alongside mobile — pet-health and subscription-focused features delivered
-  cross-platform.
+- ClubJam (EU): built for an Austrian client, including Flutter web
+  development alongside mobile — pet-health and subscription-focused
+  features delivered cross-platform.
 - Corluna: cross-platform workflows for orchestras and music ensembles.
 Tech: Flutter (mobile + web), Dart, cross-platform delivery.
 
 ### Quantix L.L.C. — Flutter Developer (Feb 2021–Sep 2023, Prishtina, Kosovo)
-Shipped multiple production apps across insurance, health, and operations:
+Shipped multiple production apps for the Kosovo market (not the EU):
 - BKS App, InsureX SIP (insurance claims and reporting), Ambra App,
   TrackerX (task/operations tracking), QHealth (room/session management).
 - Released production builds on both the App Store and Play Store while
@@ -78,8 +92,13 @@ secure login flow, consistent UI, production-ready performance.
 
 ## Notable personal projects
 - Pulse: personal project where he owns the architecture and feature roadmap.
-- FoodTech Design System: reusable Flutter design system work with strong
-  test coverage discipline.
+
+## Design systems (if asked, use THIS — not a personal design-system project)
+- PayByPhone: one of the main developers maintaining the shared Fluxus
+  component library through Widgetbook.
+- FingR Food / Finger Food: built a Flutter design system used by Hattie B's
+  and other food-ordering clients. Do NOT mention a personal "FoodTech
+  Design System" project.
 
 ## State management (practical experience with ALL of these)
 He has hands-on production experience with Riverpod, Provider, BLoC, Signals,
@@ -95,7 +114,9 @@ Signals, or GetX depending on the project's architecture and requirements.
 ## Strengths
 - Flutter/Dart mobile architecture and state management (Riverpod, Provider,
   BLoC, Signals, GetX — Riverpod preferred; MVVM, Clean Architecture).
-- Design systems and component libraries (Fluxus, Widgetbook).
+- Design systems and component libraries: Fluxus/Widgetbook at PayByPhone,
+  and the FingR Food / Finger Food design system used by Hattie B's and
+  other food-ordering clients.
 - Secure payments: Google Pay and Apple Pay at PayByPhone, plus shipped
   secure checkout/payment flows and gift card options at Honeygrow and
   Hattie B's; push notifications, live activities.
