@@ -11,12 +11,9 @@ export type AskType = 'chat' | 'fit-assessment'
 export type AiFailureKind = 'capacity' | 'network' | 'unavailable'
 
 const USER_MESSAGES: Record<AiFailureKind, string> = {
-  capacity:
-    'The AI service is at capacity right now. Please try again later today or tomorrow. This did not use one of your questions.',
-  network:
-    'Could not reach the AI service. Check your internet connection and try again. This did not use one of your questions.',
-  unavailable:
-    'The AI assistant hit an unexpected problem. Please try again later. This did not use one of your questions.',
+  capacity: 'The AI service is at capacity right now. Please try again later today or tomorrow.',
+  network: 'Could not reach the AI service. Check your internet connection and try again.',
+  unavailable: 'The AI assistant hit an unexpected problem. Please try again later.',
 }
 
 type FunctionErrorBody = {
