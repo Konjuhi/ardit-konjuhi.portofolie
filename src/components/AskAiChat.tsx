@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { askAi, MAX_CHAT_CHARS } from '../lib/askAi'
-import { consume, getRemaining, MAX_DAILY_CHAT } from '../lib/aiQuota'
+import { getRemaining, tryConsume, MAX_DAILY_CHAT } from '../lib/aiQuota'
 import { LinkedText } from '../lib/linkify'
 import { isSupabaseConfigured } from '../lib/supabaseClient'
 
@@ -78,6 +78,13 @@ function AskAiChat() {
       return
     }
 
+    const leftover = tryConsume('chat')
+    if (leftover === null) {
+      setRemaining(0)
+      return
+    }
+    setRemaining(leftover)
+
     setMessages((prev) => [...prev, { role: 'user', text: trimmed }])
     setInput('')
     if (inputRef.current) {
@@ -90,7 +97,6 @@ function AskAiChat() {
 
     try {
       const answer = await askAi(trimmed, 'chat')
-      setRemaining(consume('chat'))
       setMessages((prev) => [...prev, { role: 'ai', text: answer }])
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')

@@ -1,6 +1,7 @@
-// Client-side daily quotas. Chat and job-fit are tracked separately so using
-// one does not spend the other. This is a cost guard for casual visitors, not
-// a security boundary — the Edge Function still enforces input/output limits.
+// Per-device daily quotas. Chat (5) and job-fit (1) are tracked separately.
+// Stored in localStorage and a cookie so a page refresh cannot reset them.
+// They reset on the next local calendar day. This is a visitor cost guard,
+// not a logged-in security boundary.
 
 export const MAX_DAILY_CHAT = 5
 export const MAX_DAILY_FIT = 1
@@ -16,53 +17,106 @@ type QuotaRecord = {
 }
 
 function todayKey(): string {
-  return new Date().toISOString().slice(0, 10)
+  const now = new Date()
+  const year = now.getFullYear()
+  const month = String(now.getMonth() + 1).padStart(2, '0')
+  const day = String(now.getDate()).padStart(2, '0')
+  return `${year}-${month}-${day}`
 }
 
 function maxFor(kind: QuotaKind): number {
   return kind === 'fit' ? MAX_DAILY_FIT : MAX_DAILY_CHAT
 }
 
-function readQuota(): QuotaRecord {
+function usedFor(quota: QuotaRecord, kind: QuotaKind): number {
+  return kind === 'fit' ? quota.fit : quota.chat
+}
+
+function isValidRecord(value: unknown): value is QuotaRecord {
+  if (!value || typeof value !== 'object') {
+    return false
+  }
+  const record = value as QuotaRecord
+  return (
+    record.date === todayKey() &&
+    typeof record.chat === 'number' &&
+    typeof record.fit === 'number'
+  )
+}
+
+function readCookie(): QuotaRecord | null {
+  if (typeof document === 'undefined') {
+    return null
+  }
+  const prefix = `${STORAGE_KEY}=`
+  const match = document.cookie.split('; ').find((part) => part.startsWith(prefix))
+  if (!match) {
+    return null
+  }
+  try {
+    const parsed: unknown = JSON.parse(decodeURIComponent(match.slice(prefix.length)))
+    return isValidRecord(parsed) ? parsed : null
+  } catch {
+    return null
+  }
+}
+
+function readStorage(): QuotaRecord | null {
+  if (typeof localStorage === 'undefined') {
+    return null
+  }
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
-    if (raw) {
-      const parsed = JSON.parse(raw) as QuotaRecord
-      if (
-        parsed.date === todayKey() &&
-        typeof parsed.chat === 'number' &&
-        typeof parsed.fit === 'number'
-      ) {
-        return parsed
-      }
+    if (!raw) {
+      return null
     }
+    const parsed: unknown = JSON.parse(raw)
+    return isValidRecord(parsed) ? parsed : null
   } catch {
-    // Corrupt storage: fall through to a fresh record.
+    return null
   }
+}
+
+function emptyQuota(): QuotaRecord {
   return { date: todayKey(), chat: 0, fit: 0 }
 }
 
+function readQuota(): QuotaRecord {
+  return readStorage() ?? readCookie() ?? emptyQuota()
+}
+
 function writeQuota(quota: QuotaRecord) {
+  const payload = JSON.stringify(quota)
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(quota))
+    localStorage.setItem(STORAGE_KEY, payload)
   } catch {
-    // Storage unavailable (private mode): quota simply resets per load.
+    // Private mode may block localStorage; cookie below is the fallback.
   }
+  if (typeof document === 'undefined') {
+    return
+  }
+  const twoDays = 60 * 60 * 48
+  document.cookie = `${STORAGE_KEY}=${encodeURIComponent(payload)}; max-age=${twoDays}; path=/; SameSite=Lax`
 }
 
 export function getRemaining(kind: QuotaKind): number {
-  const used = kind === 'fit' ? readQuota().fit : readQuota().chat
-  return Math.max(0, maxFor(kind) - used)
+  return Math.max(0, maxFor(kind) - usedFor(readQuota(), kind))
 }
 
-export function consume(kind: QuotaKind): number {
+// Spend one slot immediately (before the API call) so a refresh cannot
+// reuse the same question. Returns remaining after spending, or null if
+// today's limit is already used.
+export function tryConsume(kind: QuotaKind): number | null {
   const quota = readQuota()
   const max = maxFor(kind)
+  if (usedFor(quota, kind) >= max) {
+    return null
+  }
   if (kind === 'fit') {
-    quota.fit = Math.min(max, quota.fit + 1)
+    quota.fit += 1
   } else {
-    quota.chat = Math.min(max, quota.chat + 1)
+    quota.chat += 1
   }
   writeQuota(quota)
-  return Math.max(0, max - (kind === 'fit' ? quota.fit : quota.chat))
+  return Math.max(0, max - usedFor(quota, kind))
 }
