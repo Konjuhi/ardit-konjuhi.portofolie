@@ -222,7 +222,7 @@ async function handleRequest(req: Request): Promise<Response> {
     return jsonResponse(
       {
         error: quotaHit
-          ? 'The AI assistant has reached its daily usage limit. Please try again later.'
+          ? 'The AI service is at capacity right now. Please try again later today or tomorrow.'
           : 'The AI assistant is unavailable right now. Please try again later.',
       },
       quotaHit ? 429 : 502,

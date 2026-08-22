@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { askAi, MAX_FIT_CHARS } from '../lib/askAi'
-import { getRemaining, tryConsume, MAX_DAILY_FIT } from '../lib/aiQuota'
+import { consume, getRemaining, MAX_DAILY_FIT } from '../lib/aiQuota'
 import { LinkedText } from '../lib/linkify'
 import { isSupabaseConfigured } from '../lib/supabaseClient'
 
@@ -20,21 +20,16 @@ function JobFitAssessment() {
       return
     }
 
-    const leftover = tryConsume('fit')
-    if (leftover === null) {
-      setRemaining(0)
-      return
-    }
-    setRemaining(leftover)
-
     setError(null)
     setResult(null)
     setLoading(true)
 
     try {
       const answer = await askAi(trimmed, 'fit-assessment')
+      setRemaining(consume('fit') ?? 0)
       setResult(answer)
     } catch (err) {
+      setRemaining(getRemaining('fit'))
       setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
     } finally {
       setLoading(false)

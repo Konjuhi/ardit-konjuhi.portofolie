@@ -103,10 +103,9 @@ export function getRemaining(kind: QuotaKind): number {
   return Math.max(0, maxFor(kind) - usedFor(readQuota(), kind))
 }
 
-// Spend one slot immediately (before the API call) so a refresh cannot
-// reuse the same question. Returns remaining after spending, or null if
-// today's limit is already used.
-export function tryConsume(kind: QuotaKind): number | null {
+// Spend one slot only after a successful answer. Failures do not count.
+// Returns remaining after spending, or null if today's limit is already used.
+export function consume(kind: QuotaKind): number | null {
   const quota = readQuota()
   const max = maxFor(kind)
   if (usedFor(quota, kind) >= max) {
