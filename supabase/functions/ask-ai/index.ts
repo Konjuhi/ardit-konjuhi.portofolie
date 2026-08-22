@@ -164,6 +164,9 @@ async function callOpenAi(apiKey: string, systemPrompt: string, userPrompt: stri
   })
 
   if (!response.ok) {
+    if (response.status === 429) {
+      throw new Error('QUOTA')
+    }
     throw new Error(`OpenAI API error ${response.status}: ${await response.text()}`)
   }
 
@@ -221,9 +224,10 @@ async function handleRequest(req: Request): Promise<Response> {
     const quotaHit = error instanceof Error && error.message === 'QUOTA'
     return jsonResponse(
       {
+        code: quotaHit ? 'capacity' : 'unavailable',
         error: quotaHit
           ? 'The AI service is at capacity right now. Please try again later today or tomorrow.'
-          : 'The AI assistant is unavailable right now. Please try again later.',
+          : 'The AI assistant hit an unexpected problem. Please try again later.',
       },
       quotaHit ? 429 : 502,
     )
