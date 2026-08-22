@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { askAi, MAX_CHAT_CHARS } from '../lib/askAi'
-import { consumeQuery, getRemainingQueries, MAX_DAILY_QUERIES } from '../lib/aiQuota'
+import { consume, getRemaining, MAX_DAILY_CHAT } from '../lib/aiQuota'
 import { LinkedText } from '../lib/linkify'
 import { isSupabaseConfigured } from '../lib/supabaseClient'
 
@@ -42,7 +42,7 @@ function AskAiChat() {
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [remaining, setRemaining] = useState(getRemainingQueries)
+  const [remaining, setRemaining] = useState(() => getRemaining('chat'))
   const logRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
 
@@ -82,7 +82,7 @@ function AskAiChat() {
 
     try {
       const answer = await askAi(trimmed, 'chat')
-      setRemaining(consumeQuery())
+      setRemaining(consume('chat'))
       setMessages((prev) => [...prev, { role: 'ai', text: answer }])
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
@@ -98,8 +98,8 @@ function AskAiChat() {
         <h3>Ask AI about Ardit</h3>
         <p className="quota-line">
           {quotaExhausted
-            ? 'Daily free limit reached — come back tomorrow.'
-            : `${remaining}/${MAX_DAILY_QUERIES} free questions remaining today`}
+            ? 'Daily question limit reached — come back tomorrow.'
+            : `${remaining}/${MAX_DAILY_CHAT} questions remaining today · job-fit is separate (1/day)`}
         </p>
       </div>
 

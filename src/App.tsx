@@ -863,8 +863,11 @@ function App() {
             <h2>Analyze the job fit</h2>
             <p className="section-sub">
               Hiring for a role or a freelance project? Paste the description for an honest AI assessment of how my
-              experience matches. For anything else, ask the <button className="inline-chat-link" type="button" onClick={() => setChatOpen(true)}>AI chat</button> in
-              the top bar.
+              experience matches — one job-fit analysis per day. For anything else, ask the{' '}
+              <button className="inline-chat-link" type="button" onClick={() => setChatOpen(true)}>
+                AI chat
+              </button>{' '}
+              in the top bar (5 questions per day). The two limits are separate, so using one does not spend the other.
             </p>
           </div>
           <div className="ai-grid">

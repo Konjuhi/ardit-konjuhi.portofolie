@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { askAi, MAX_FIT_CHARS } from '../lib/askAi'
-import { consumeQuery, getRemainingQueries, MAX_DAILY_QUERIES } from '../lib/aiQuota'
+import { consume, getRemaining, MAX_DAILY_FIT } from '../lib/aiQuota'
 import { LinkedText } from '../lib/linkify'
 import { isSupabaseConfigured } from '../lib/supabaseClient'
 
@@ -9,7 +9,7 @@ function JobFitAssessment() {
   const [result, setResult] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [remaining, setRemaining] = useState(getRemainingQueries)
+  const [remaining, setRemaining] = useState(() => getRemaining('fit'))
 
   const quotaExhausted = remaining <= 0
   const disabled = !isSupabaseConfigured || loading || quotaExhausted
@@ -26,7 +26,7 @@ function JobFitAssessment() {
 
     try {
       const answer = await askAi(trimmed, 'fit-assessment')
-      setRemaining(consumeQuery())
+      setRemaining(consume('fit'))
       setResult(answer)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
@@ -41,8 +41,8 @@ function JobFitAssessment() {
         <h3>Analyze Job Fit</h3>
         <p className="quota-line">
           {quotaExhausted
-            ? 'Daily free limit reached — come back tomorrow.'
-            : `${remaining}/${MAX_DAILY_QUERIES} free analyses remaining today`}
+            ? 'Daily job analysis used — you can still ask up to 5 chat questions today.'
+            : `${remaining}/${MAX_DAILY_FIT} job analysis remaining today · chat questions are separate (5/day)`}
         </p>
       </div>
 
