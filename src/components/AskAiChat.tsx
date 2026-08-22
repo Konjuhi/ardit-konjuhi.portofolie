@@ -57,7 +57,14 @@ function AskAiChat() {
   }
 
   const quotaExhausted = remaining <= 0
-  const disabled = !isSupabaseConfigured || loading || quotaExhausted
+  const inputLocked = !isSupabaseConfigured || quotaExhausted
+  const submitLocked = inputLocked || loading
+
+  const focusInput = () => {
+    requestAnimationFrame(() => {
+      inputRef.current?.focus()
+    })
+  }
 
   const scrollLogToBottom = () => {
     requestAnimationFrame(() => {
@@ -67,7 +74,7 @@ function AskAiChat() {
 
   const submitQuestion = async (question: string) => {
     const trimmed = question.trim()
-    if (trimmed.length === 0 || disabled) {
+    if (trimmed.length === 0 || submitLocked) {
       return
     }
 
@@ -79,6 +86,7 @@ function AskAiChat() {
     setError(null)
     setLoading(true)
     scrollLogToBottom()
+    focusInput()
 
     try {
       const answer = await askAi(trimmed, 'chat')
@@ -89,6 +97,7 @@ function AskAiChat() {
     } finally {
       setLoading(false)
       scrollLogToBottom()
+      focusInput()
     }
   }
 
@@ -115,7 +124,7 @@ function AskAiChat() {
                     key={suggestion}
                     type="button"
                     className="chip"
-                    disabled={disabled}
+                    disabled={submitLocked}
                     onClick={() => submitQuestion(suggestion)}
                   >
                     {suggestion}
@@ -148,7 +157,7 @@ function AskAiChat() {
               maxLength={MAX_CHAT_CHARS}
               placeholder={quotaExhausted ? 'Daily limit reached' : 'Ask about Ardit…'}
               aria-label="Ask a question about Ardit"
-              disabled={disabled}
+              disabled={inputLocked}
               onChange={(event) => {
                 setInput(event.target.value)
                 resizeInput()
@@ -160,7 +169,7 @@ function AskAiChat() {
                 }
               }}
             />
-            <button className="btn btn-primary btn-compact" type="submit" disabled={disabled || input.trim().length === 0}>
+            <button className="btn btn-primary btn-compact" type="submit" disabled={submitLocked || input.trim().length === 0}>
               {loading ? 'Asking…' : 'Ask'}
             </button>
           </form>
