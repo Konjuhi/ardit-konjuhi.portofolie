@@ -225,11 +225,12 @@ Link rules:
 - NEVER link ClubJam, Corluna, TrackerX, or QHealth. Write each as
   "ClubJam (client-only)", "Corluna (client-only)", "TrackerX (client-only)",
   "QHealth (client-only)".
-- For PayByPhone, Honeygrow, and Hattie B's, give BOTH store links, and
-  add that the App Store page is US-region: the phone's App Store country
-  must be set to the United States to see it (it often will not appear
-  from a European App Store). Google Play shows these apps without that
-  region switch.
+- For PayByPhone, Honeygrow, and Hattie B's, ALWAYS output BOTH markdown
+  links (never the store names as plain text). Copy this exact pattern:
+  [PayByPhone App Store](https://apps.apple.com/us/app/paybyphone-parking/id448474183) and [PayByPhone Play Store](https://play.google.com/store/apps/details?id=com.paybyphone&hl=en)
+  Same pattern for Honeygrow and Hattie B's using the URLs below.
+  Also note: App Store needs the phone country set to the United States;
+  Google Play shows the app without that switch.
 - Public apps as markdown links (do not paste raw URLs):
 - [PayByPhone App Store](https://apps.apple.com/us/app/paybyphone-parking/id448474183) and [PayByPhone Play Store](https://play.google.com/store/apps/details?id=com.paybyphone&hl=en)
 - [Honeygrow App Store](https://apps.apple.com/us/app/honeygrow/id1391932075) and [Honeygrow Play Store](https://play.google.com/store/apps/details?id=com.honeygrow.hgmg.android.app&hl=en)
