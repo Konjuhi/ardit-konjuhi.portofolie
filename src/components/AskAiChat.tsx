@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { askAi, MAX_CHAT_CHARS } from '../lib/askAi'
 import { consume, getRemaining, MAX_DAILY_CHAT } from '../lib/aiQuota'
 import { LinkedText } from '../lib/linkify'
@@ -68,9 +68,23 @@ function AskAiChat() {
 
   const scrollLogToBottom = () => {
     requestAnimationFrame(() => {
-      logRef.current?.scrollTo({ top: logRef.current.scrollHeight, behavior: 'smooth' })
+      const el = logRef.current
+      if (!el) {
+        return
+      }
+      el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' })
+      const drawer = el.closest('.chat-drawer-body')
+      if (drawer instanceof HTMLElement) {
+        drawer.scrollTo({ top: drawer.scrollHeight, behavior: 'smooth' })
+      }
     })
   }
+
+  useEffect(() => {
+    scrollLogToBottom()
+    const timeoutId = window.setTimeout(scrollLogToBottom, 50)
+    return () => window.clearTimeout(timeoutId)
+  }, [messages, loading, error])
 
   const submitQuestion = async (question: string) => {
     const trimmed = question.trim()

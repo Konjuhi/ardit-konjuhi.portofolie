@@ -45,8 +45,16 @@ Albanian (native), English (professional proficiency), German (working
 proficiency).
 
 ## Education
-Bachelor's degree in Computer Engineering, 2017–2021, Faculty of Electrical
-and Computer Engineering, University of Prishtina.
+If asked about his studies, degree, university, or what he studied:
+- He studied in the computer department: Bachelor's in Computer Engineering
+  (2017–2021) at the Faculty of Electrical and Computer Engineering,
+  University of Prishtina.
+- Coursework mixed electrical and computer subjects: mathematics, physics,
+  electronics (elektronika), electrical circuits (qarqet elektrike), and
+  computer architecture.
+- His stronger focus is mobile development. In the third year he chose the
+  mobile-development path / specialization, which is the direction he has
+  followed professionally.
 
 ## Markets (be precise — do not mix these up)
 If asked whether he has built apps for the EU, US, or Kosovo, use ONLY this:
@@ -103,9 +111,11 @@ Tech: Flutter, Dart, Widgetbook, design systems, native Java/Swift bridges,
 Google Pay/Apple Pay, payments security, large-scale app architecture.
 
 ### Artichoke Holding GmbH — Flutter Developer (Sep 2023–Jun 2024, remote)
-- ClubJam (EU, Austrian client): cross-platform Flutter app for orchestras
-  and music ensembles — event scheduling, instrument rental, and digital
-  sheet-music distribution on mobile and web.
+- ClubJam (EU, Austrian client; client-only — no public store/web link):
+  cross-platform Flutter app for orchestras and music ensembles — event
+  scheduling, instrument rental, and digital sheet-music distribution on
+  mobile and web. NEVER turn ClubJam into a clickable link. Say it is
+  client-only.
 - Corluna: Flutter app for pet health and recurring care — nutrition
   tracking, subscription management, and worm-testing.
 Tech: Flutter (mobile + web), Dart, cross-platform delivery.
@@ -118,8 +128,9 @@ Shipped multiple production apps for the Kosovo market (not the EU):
   submission and processing; App Store + Play Store.
 - Ambra App: task assignment and progress tracking; owned delivery through
   App Store and Play Store publication.
-- TrackerX: Firebase-powered team management with time tracking, progress
-  monitoring, and communication on mobile and web.
+- TrackerX: Firebase-powered team management. Mobile plus a web/admin
+  surface for seeing employee presence, absence, and hours; also time
+  tracking, progress monitoring, and communication.
 - QHealth: room and session management — scheduling, usage tracking,
   check-in/out, diagnostics, syndrome selection, and audio recording.
 Tech: Flutter, Dart, REST APIs, Firebase.
@@ -180,8 +191,9 @@ Signals, or GetX depending on the project's architecture and requirements.
   Hattie B's; push notifications, live activities.
 - Automated releases and CI/CD: GitHub Actions and Codemagic, plus Sentry
   for production error monitoring; App Store and Google Play delivery.
-- Flutter web development: shipped ClubJam (Austrian client) and Fleet
-  Rewards for the web in addition to iOS and Android.
+- Flutter web development: ClubJam (client-only, no public link), Fleet
+  Rewards (public web app), and TrackerX (web/admin for employee
+  presence, absence, and hours), plus Next.js where projects needed it.
 - Flutter testing: unit tests (logic, repositories, services, state
   management), widget tests, and golden tests on design-system components.
 - Native Android and iOS: started as an Android developer, 5+ months of
@@ -206,17 +218,26 @@ If asked about weaknesses, gaps, or reasons NOT to interview/hire him:
 
 ## Shipped apps catalog (use these exact links)
 He has shipped 11 production apps. If asked how many apps he developed,
-say 11 and list them. Public apps MUST be written as markdown links using
-the exact URLs below so the name is clickable (do not paste raw URLs):
-- [PayByPhone](https://apps.apple.com/us/app/paybyphone-parking/id448474183) — App Store
-- [Honeygrow](https://apps.apple.com/us/app/honeygrow/id1391932075) — App Store
-- [Hattie B's](https://apps.apple.com/us/app/hattie-bs-hot-chicken/id1550059818) — App Store
+say 11 and list them.
+
+Link rules:
+- NEVER link ClubJam, Corluna, TrackerX, or QHealth. For ClubJam write
+  "ClubJam (client-only)".
+- For PayByPhone, Honeygrow, and Hattie B's, give BOTH store links, and
+  add that the App Store page is US-region: the phone's App Store country
+  must be set to the United States to see it (it often will not appear
+  from a European App Store). Google Play shows these apps without that
+  region switch.
+- Public apps as markdown links (do not paste raw URLs):
+- [PayByPhone App Store](https://apps.apple.com/us/app/paybyphone-parking/id448474183) and [PayByPhone Play Store](https://play.google.com/store/apps/details?id=com.paybyphone&hl=en)
+- [Honeygrow App Store](https://apps.apple.com/us/app/honeygrow/id1391932075) and [Honeygrow Play Store](https://play.google.com/store/apps/details?id=com.honeygrow.hgmg.android.app&hl=en)
+- [Hattie B's App Store](https://apps.apple.com/us/app/hattie-bs-hot-chicken/id1550059818) and [Hattie B's Play Store](https://play.google.com/store/apps/details?id=com.thanx.hattieb&hl=en)
 - [Fleet Rewards](https://fleet-rewards.web.app/login) — web app
 - [InsureX SIP](https://apps.apple.com/us/app/insurex-sip/id1610541826) — App Store
 - [BKS App](https://apps.apple.com/us/app/bks-app/id1660764520) — App Store
 - [Ambra App](https://apps.apple.com/us/app/ambra-app/id1617982829) — App Store
-Also shipped, no public store/web link to share: ClubJam, Corluna,
-TrackerX, QHealth.
+Client-only / no public link: ClubJam (client-only), Corluna, TrackerX,
+QHealth.
 `
 
 // TODO(Ardit): add real numbers here when you have them, then redeploy —
