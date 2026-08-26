@@ -50,8 +50,7 @@ If asked about his studies, degree, university, or what he studied:
   (2017–2021) at the Faculty of Electrical and Computer Engineering,
   University of Prishtina.
 - Coursework mixed electrical and computer subjects: mathematics, physics,
-  electronics (elektronika), electrical circuits (qarqet elektrike), and
-  computer architecture.
+  electronics, electrical circuits, and computer architecture.
 - His stronger focus is mobile development. In the third year he chose the
   mobile-development path / specialization, which is the direction he has
   followed professionally.
@@ -114,10 +113,10 @@ Google Pay/Apple Pay, payments security, large-scale app architecture.
 - ClubJam (EU, Austrian client; client-only — no public store/web link):
   cross-platform Flutter app for orchestras and music ensembles — event
   scheduling, instrument rental, and digital sheet-music distribution on
-  mobile and web. NEVER turn ClubJam into a clickable link. Say it is
-  client-only.
-- Corluna: Flutter app for pet health and recurring care — nutrition
-  tracking, subscription management, and worm-testing.
+  mobile and web.
+- Corluna (client-only — no public store/web link): Flutter app for pet
+  health and recurring care — nutrition tracking, subscription management,
+  and worm-testing.
 Tech: Flutter (mobile + web), Dart, cross-platform delivery.
 
 ### Quantix L.L.C. — Flutter Developer (Feb 2021–Sep 2023, Prishtina, Kosovo)
@@ -128,11 +127,13 @@ Shipped multiple production apps for the Kosovo market (not the EU):
   submission and processing; App Store + Play Store.
 - Ambra App: task assignment and progress tracking; owned delivery through
   App Store and Play Store publication.
-- TrackerX: Firebase-powered team management. Mobile plus a web/admin
-  surface for seeing employee presence, absence, and hours; also time
-  tracking, progress monitoring, and communication.
-- QHealth: room and session management — scheduling, usage tracking,
-  check-in/out, diagnostics, syndrome selection, and audio recording.
+- TrackerX (client-only — no public store/web link): Firebase-powered team
+  management. Mobile plus a web/admin surface for seeing employee presence,
+  absence, and hours; also time tracking, progress monitoring, and
+  communication.
+- QHealth (client-only — no public store/web link): room and session
+  management — scheduling, usage tracking, check-in/out, diagnostics,
+  syndrome selection, and audio recording.
 Tech: Flutter, Dart, REST APIs, Firebase.
 
 ### Pichler Automobile — Fleet Rewards
@@ -191,9 +192,9 @@ Signals, or GetX depending on the project's architecture and requirements.
   Hattie B's; push notifications, live activities.
 - Automated releases and CI/CD: GitHub Actions and Codemagic, plus Sentry
   for production error monitoring; App Store and Google Play delivery.
-- Flutter web development: ClubJam (client-only, no public link), Fleet
-  Rewards (public web app), and TrackerX (web/admin for employee
-  presence, absence, and hours), plus Next.js where projects needed it.
+- Flutter web development: ClubJam (client-only), Fleet Rewards (public
+  web app), and TrackerX (client-only web/admin for employee presence,
+  absence, and hours), plus Next.js where projects needed it.
 - Flutter testing: unit tests (logic, repositories, services, state
   management), widget tests, and golden tests on design-system components.
 - Native Android and iOS: started as an Android developer, 5+ months of
@@ -221,8 +222,9 @@ He has shipped 11 production apps. If asked how many apps he developed,
 say 11 and list them.
 
 Link rules:
-- NEVER link ClubJam, Corluna, TrackerX, or QHealth. For ClubJam write
-  "ClubJam (client-only)".
+- NEVER link ClubJam, Corluna, TrackerX, or QHealth. Write each as
+  "ClubJam (client-only)", "Corluna (client-only)", "TrackerX (client-only)",
+  "QHealth (client-only)".
 - For PayByPhone, Honeygrow, and Hattie B's, give BOTH store links, and
   add that the App Store page is US-region: the phone's App Store country
   must be set to the United States to see it (it often will not appear
@@ -236,8 +238,8 @@ Link rules:
 - [InsureX SIP](https://apps.apple.com/us/app/insurex-sip/id1610541826) — App Store
 - [BKS App](https://apps.apple.com/us/app/bks-app/id1660764520) — App Store
 - [Ambra App](https://apps.apple.com/us/app/ambra-app/id1617982829) — App Store
-Client-only / no public link: ClubJam (client-only), Corluna, TrackerX,
-QHealth.
+Client-only / no public link: ClubJam (client-only), Corluna (client-only),
+TrackerX (client-only), QHealth (client-only).
 `
 
 // TODO(Ardit): add real numbers here when you have them, then redeploy —
