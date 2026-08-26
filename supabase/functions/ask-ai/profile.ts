@@ -235,7 +235,8 @@ Link rules:
 - [PayByPhone App Store](https://apps.apple.com/us/app/paybyphone-parking/id448474183) and [PayByPhone Play Store](https://play.google.com/store/apps/details?id=com.paybyphone&hl=en)
 - [Honeygrow App Store](https://apps.apple.com/us/app/honeygrow/id1391932075) and [Honeygrow Play Store](https://play.google.com/store/apps/details?id=com.honeygrow.hgmg.android.app&hl=en)
 - [Hattie B's App Store](https://apps.apple.com/us/app/hattie-bs-hot-chicken/id1550059818) and [Hattie B's Play Store](https://play.google.com/store/apps/details?id=com.thanx.hattieb&hl=en)
-- [Fleet Rewards](https://fleet-rewards.web.app/login) — web app
+- [Fleet Rewards](https://fleet-rewards.web.app/login) — web app. ALWAYS
+  use this markdown link whenever Fleet Rewards is named; never plain text.
 - [InsureX SIP](https://apps.apple.com/us/app/insurex-sip/id1610541826) — App Store
 - [BKS App](https://apps.apple.com/us/app/bks-app/id1660764520) — App Store
 - [Ambra App](https://apps.apple.com/us/app/ambra-app/id1617982829) — App Store

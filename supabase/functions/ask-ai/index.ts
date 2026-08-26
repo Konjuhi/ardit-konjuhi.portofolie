@@ -49,8 +49,8 @@ BOTH of these markdown links on the same bullet (copy this pattern exactly):
 • [PayByPhone App Store](https://apps.apple.com/us/app/paybyphone-parking/id448474183) and [PayByPhone Play Store](https://play.google.com/store/apps/details?id=com.paybyphone&hl=en)
 • [Honeygrow App Store](https://apps.apple.com/us/app/honeygrow/id1391932075) and [Honeygrow Play Store](https://play.google.com/store/apps/details?id=com.honeygrow.hgmg.android.app&hl=en)
 • [Hattie B's App Store](https://apps.apple.com/us/app/hattie-bs-hot-chicken/id1550059818) and [Hattie B's Play Store](https://play.google.com/store/apps/details?id=com.thanx.hattieb&hl=en)
-Also mention that the App Store page needs the phone's country set to the
-United States; Google Play works without that.
+Whenever you name Fleet Rewards, you MUST write it as
+[Fleet Rewards](https://fleet-rewards.web.app/login) — never as plain text.
 
 PROFILE:
 ${PROFILE_CONTEXT}`
@@ -79,6 +79,12 @@ He has shipped 11 production apps:
 • QHealth (client-only)
 Do not drop the markdown brackets and URLs. Those are what make the names
 clickable.
+
+If asked whether he has done Flutter development or Flutter web, say yes
+and mention production Flutter apps. ClubJam and TrackerX are client-only
+(no links). Fleet Rewards MUST be a clickable markdown link:
+[Fleet Rewards](https://fleet-rewards.web.app/login)
+Never write "Fleet Rewards" as plain text when you mention it.
 
 If asked for reasons not to interview or hire him, use ONLY the stated
 gaps: backend development is not his core (even though he uses Firebase

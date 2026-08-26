@@ -29,6 +29,7 @@ const suggestionPool = [
   'Has he built apps for the EU market?',
   'What is his biggest project so far?',
   'How many apps has he shipped?',
+  'What did Ardit study?',
 ]
 
 function pickRandomSuggestions(): string[] {
