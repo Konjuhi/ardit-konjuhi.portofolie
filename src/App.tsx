@@ -26,7 +26,14 @@ type ExperienceItem = {
   engagement: string
   role: string
   period: string
-  products: { name: string; url?: string; note?: string; ctaLabel?: string; appStoreUrl?: string }[]
+  products: {
+    name: string
+    url?: string
+    note?: string
+    ctaLabel?: string
+    appStoreUrl?: string
+    playStoreUrl?: string
+  }[]
   highlights: string[]
 }
 
@@ -109,12 +116,14 @@ const experiences: ExperienceItem[] = [
         url: 'https://www.honeygrow.com/',
         note: 'Contributed to an already-built app',
         appStoreUrl: 'https://apps.apple.com/us/app/honeygrow/id1391932075',
+        playStoreUrl: 'https://play.google.com/store/apps/details?id=com.honeygrow.hgmg.android.app&hl=en',
       },
       {
         name: "Hattie B's",
         url: 'http://hattieb.com/',
         note: 'Worked end-to-end from start to finish',
         appStoreUrl: 'https://apps.apple.com/us/app/hattie-bs-hot-chicken/id1550059818',
+        playStoreUrl: 'https://play.google.com/store/apps/details?id=com.thanx.hattieb&hl=en',
       },
     ],
     highlights: [
@@ -158,13 +167,19 @@ const experiences: ExperienceItem[] = [
     role: 'Flutter Developer',
     period: 'Feb 2021 — Sep 2023',
     products: [
-      { name: 'BKS App', url: 'https://apps.apple.com/us/app/bks-app/id1660764520', ctaLabel: 'View on App Store' },
+      {
+        name: 'BKS App',
+        appStoreUrl: 'https://apps.apple.com/us/app/bks-app/id1660764520',
+      },
       {
         name: 'InsureX SIP',
-        url: 'https://apps.apple.com/us/app/insurex-sip/id1610541826',
-        ctaLabel: 'View on App Store',
+        appStoreUrl: 'https://apps.apple.com/us/app/insurex-sip/id1610541826',
+        playStoreUrl: 'https://play.google.com/store/apps/details?id=com.quantix.bks.android',
       },
-      { name: 'Ambra App', url: 'https://apps.apple.com/us/app/ambra-app/id1617982829', ctaLabel: 'View on App Store' },
+      {
+        name: 'Ambra App',
+        appStoreUrl: 'https://apps.apple.com/us/app/ambra-app/id1617982829',
+      },
       { name: 'TrackerX' },
       { name: 'QHealth' },
     ],
@@ -778,6 +793,14 @@ function App() {
                           </a>
                         </>
                       ) : null}
+                      {product.playStoreUrl ? (
+                        <>
+                          {' · '}
+                          <a href={product.playStoreUrl} target="_blank" rel="noreferrer noopener">
+                            Play Store
+                          </a>
+                        </>
+                      ) : null}
                     </span>
                   ))}
                 </div>
@@ -802,7 +825,8 @@ function App() {
               <p>
                 Experienced Flutter Developer with 5 years of professional experience and a degree in Computer
                 Engineering. Skilled in building intuitive, user-friendly mobile applications with Flutter and Dart,
-                following clean architecture and the MVVM pattern for scalable, production-ready code.
+                following Flutter's recommended MVVM architecture — Views, ViewModels, Repositories, and Services —
+                for maintainable, testable, production-ready code.
               </p>
               <div className="cv-actions">
                 <a className="btn btn-primary" href={cvUrl} download>
