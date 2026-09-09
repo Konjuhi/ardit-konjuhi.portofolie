@@ -389,7 +389,7 @@ function App() {
   }, [chatOpen])
 
   const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
-  const cvUrl = asset('/Ardit-Konjuhi-CV.pdf?v=20260822-1')
+  const cvUrl = asset('/Ardit-Konjuhi-CV.pdf?v=20260909-1')
 
   useEffect(() => {
     const revealElements = Array.from(document.querySelectorAll<HTMLElement>('.reveal'))
