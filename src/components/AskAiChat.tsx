@@ -10,7 +10,7 @@ type ChatMessage = {
 }
 
 const suggestionPool = [
-  'What is his strongest Flutter experience?',
+  'What is his strongest mobile experience?',
   'Has he shipped payment features?',
   'What are his honest gaps?',
   'What domains has he worked in?',

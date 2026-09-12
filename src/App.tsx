@@ -108,7 +108,7 @@ const experiences: ExperienceItem[] = [
     company: 'Moxie Labs',
     companyUrl: 'https://www.moxielabs.co/#team',
     engagement: 'Remote · Digital product & marketing agency',
-    role: 'Senior Flutter Developer',
+    role: 'Senior Mobile Engineer',
     period: 'Jun 2025 — Present',
     products: [
       {
@@ -138,7 +138,7 @@ const experiences: ExperienceItem[] = [
     viaLabel: 'via RiTech International AG',
     viaUrl: 'https://www.ritech.co/',
     engagement: 'via RiTech International AG',
-    role: 'Senior Flutter Developer',
+    role: 'Senior Mobile Developer',
     period: 'Jun 2024 — Mar 2026',
     products: [{ name: 'PayByPhone', url: 'https://www.paybyphone.com/', note: 'Powered by Corpay' }],
     highlights: [
@@ -194,7 +194,7 @@ const experiences: ExperienceItem[] = [
 const skillGroups: SkillGroup[] = [
   {
     title: 'Languages & frameworks',
-    skills: ['Flutter', 'Dart', 'Swift', 'Kotlin', 'Java', 'Mobile Development', 'Android', 'iOS', 'Web'],
+    skills: ['Flutter', 'Dart', 'Swift', 'SwiftUI', 'Kotlin', 'Jetpack Compose', 'Java', 'Mobile Development', 'Android', 'iOS', 'Web'],
   },
   {
     title: 'Backend & data',
@@ -389,7 +389,7 @@ function App() {
   }, [chatOpen])
 
   const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
-  const cvUrl = asset('/Ardit-Konjuhi-CV.pdf?v=20260909-1')
+  const cvUrl = asset('/Ardit-Konjuhi-CV.pdf?v=20260912-1')
 
   useEffect(() => {
     const revealElements = Array.from(document.querySelectorAll<HTMLElement>('.reveal'))
@@ -568,12 +568,12 @@ function App() {
       <main className="site-shell" id="top">
         <section className="hero reveal">
           <div className="hero-content">
-            <p className="eyebrow">Flutter Engineer</p>
+            <p className="eyebrow">Senior Mobile Engineer</p>
             <h1>Building reliable mobile products that people use every day.</h1>
             <p className="intro">
-              Software engineer with 6+ years of professional experience — more than 5 of them building Flutter apps
-              for mobile and web — and a Computer Engineering background. Focused on production-ready architecture,
-              clean code, and scalable delivery.
+              Senior Mobile Engineer with 6 years of software development experience, including more than 5 years
+              specializing in mobile development with Flutter, iOS, and Android, using Dart, SwiftUI, and Kotlin.
+              Focused on production-ready architecture, clean code, and scalable delivery.
             </p>
             <div className="cta-row">
               <a
@@ -731,7 +731,7 @@ function App() {
         <section id="experience" className="section reveal">
           <div className="section-head">
             <p className="eyebrow">Experience</p>
-            <h2>Professional experience in Flutter and mobile delivery</h2>
+            <h2>Professional experience in mobile delivery</h2>
           </div>
           <div className="timeline">
             {experiences.map((item) => (
@@ -821,12 +821,11 @@ function App() {
           </div>
           <div className="cv-card">
             <div className="cv-copy">
-              <h3>Ardit Konjuhi — Flutter Engineer</h3>
+              <h3>Ardit Konjuhi — Senior Mobile Engineer</h3>
               <p>
-                Experienced Flutter Developer with 5 years of professional experience and a degree in Computer
-                Engineering. Skilled in building intuitive, user-friendly mobile applications with Flutter and Dart,
-                following Flutter's recommended MVVM architecture — Views, ViewModels, Repositories, and Services —
-                for maintainable, testable, production-ready code.
+                Senior Mobile Engineer with 6 years of software development experience, including more than 5 years
+                specializing in mobile development with Flutter, iOS, and Android, using Dart, SwiftUI, and Kotlin.
+                Builds maintainable, testable apps with MVVM — Views, ViewModels, Repositories, and Services.
               </p>
               <div className="cv-actions">
                 <a className="btn btn-primary" href={cvUrl} download>
@@ -842,7 +841,7 @@ function App() {
               <div className="cv-preview-head">
                 <div>
                   <p className="cv-preview-name">Ardit Konjuhi</p>
-                  <p className="cv-preview-role">Flutter Engineer</p>
+                  <p className="cv-preview-role">Senior Mobile Engineer</p>
                 </div>
                 <div className="cv-preview-contact">
                   <p>arditkonjuhi8@gmail.com</p>
@@ -853,9 +852,8 @@ function App() {
               <div className="cv-preview-divider" />
               <p className="cv-preview-label">Summary</p>
               <p className="cv-preview-text">
-                Experienced Flutter Developer with 5 years of professional experience and a Computer Engineering
-                degree. Proficient in RESTful APIs, Firebase, and Supabase, with a focus on clean, maintainable,
-                production-ready code.
+                Senior Mobile Engineer with 6 years of software development experience, including more than 5 years
+                specializing in mobile development with Flutter, iOS, and Android, using Dart, SwiftUI, and Kotlin.
               </p>
             </div>
           </div>
@@ -904,7 +902,7 @@ function App() {
             <p className="eyebrow">Contact</p>
             <h2>Let's build something reliable together.</h2>
             <p className="contact-sub">
-              Open to Flutter roles and freelance mobile projects. The fastest way to reach me is by email.
+              Open to mobile roles and freelance mobile projects. The fastest way to reach me is by email.
             </p>
             <div className="cta-row">
               <a className="btn btn-primary" href="mailto:arditkonjuhi8@gmail.com">
@@ -928,7 +926,7 @@ function App() {
 
       <footer className="site-footer">
         <div className="footer-inner">
-          <p>© 2026 Ardit Konjuhi — Flutter Engineer</p>
+          <p>© 2026 Ardit Konjuhi — Senior Mobile Engineer</p>
           <div className="footer-links">
             <a href="https://github.com/Konjuhi" target="_blank" rel="noreferrer noopener">
               GitHub

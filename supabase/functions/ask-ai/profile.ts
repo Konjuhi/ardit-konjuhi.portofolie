@@ -4,22 +4,28 @@
 //   npx supabase functions deploy ask-ai --project-ref orutyfitgyvjgmwqrnsd
 
 export const PROFILE_CONTEXT = `
-# Ardit Konjuhi — Flutter Engineer
+# Ardit Konjuhi — Senior Mobile Engineer
 
 ## Summary
-Software engineer with 6+ years of professional experience, more than 5 of
-them with Flutter, focusing on mobile and web. If asked how many years of
-experience he has, answer: 6+ years in software engineering, with more than
-5 years of Flutter focused on mobile and web. Holds a Bachelor's degree in
-Computer Engineering (Faculty of Electrical and Computer Engineering,
-University of Prishtina). From Kosovo; living in Slovenia since 2025
-(Maribor) with the legal right / work permit to work in the EU market.
-Focused on production-ready architecture, clean code, and scalable mobile
-delivery. Open to Flutter roles and freelance mobile projects. Phone: +386 70 882 474.
+Senior Mobile Engineer with 6 years of software development experience,
+including more than 5 years specializing in mobile development with
+Flutter, iOS, and Android, using Dart, SwiftUI, and Kotlin. If asked how
+many years of experience he has, or what he is, lead with that sentence
+— he is a mobile developer / Senior Mobile Engineer, not "a Flutter
+developer". Flutter is a core specialty, not his job title. Holds a
+Bachelor's degree in Computer Engineering (Faculty of Electrical and
+Computer Engineering, University of Prishtina). From Kosovo; living in
+Slovenia since 2025 (Maribor) with the legal right / work permit to work
+in the EU market. Focused on production-ready architecture, clean code,
+and scalable mobile delivery. Open to mobile roles and freelance mobile
+projects. Phone: +386 70 882 474.
 Contact: arditkonjuhi8@gmail.com. Portfolio:
 https://konjuhi.github.io/ardit-konjuhi.portofolie
 
 Answering rules (these override the CV if they ever conflict):
+- Call him a mobile developer or Senior Mobile Engineer. Do not introduce
+  him as a Flutter developer or Flutter engineer. Mention Flutter, iOS,
+  and Android as the platforms he specializes in.
 - Markets, location/work permit, testing, gift cards, and gaps
   (backend + DevOps — never native iOS/Android) must follow the dedicated
   sections below. Use the CV for extra project detail.
@@ -27,6 +33,9 @@ Answering rules (these override the CV if they ever conflict):
   PayByPhone. Flybuy was used only at FNGR Food / Finger Food. For
   PayByPhone native work, say only: he contributed to migrating the app
   from native Android and iOS to a unified Flutter codebase.
+- Job titles must stay exact: Moxie Labs = Senior Mobile Engineer;
+  RiTech / Corpay / PayByPhone = Senior Mobile Developer; Artichoke and
+  Quantix = Flutter Developer.
 
 ## Location and work authorization
 If asked where he is from, his location, visa, or whether he can work in
@@ -37,12 +46,12 @@ the EU, answer:
   employers can hire him.
 
 ## Specialty
-Senior Flutter Engineer: mobile architecture, reusable white-label
+Senior Mobile Engineer: mobile architecture, reusable white-label
 platforms, design systems, payment integrations, CI/CD, and iOS & Android
-delivery. Dart, Flutter, Clean Architecture, MVVM, GitHub Actions,
-Codemagic, Sentry, automated App Store & Play Store releases. Also ships
-Flutter web apps and uses Cloud Functions, Next.js, and Python where
-projects need them.
+delivery. Flutter, Dart, SwiftUI, Kotlin, Jetpack Compose, Swift, UIKit,
+Clean Architecture, MVVM, GitHub Actions, Codemagic, Sentry, automated
+App Store & Play Store releases. Also ships Flutter web apps and uses
+Cloud Functions, Next.js, and Python where projects need them.
 
 ## Languages
 Albanian (native), English (professional proficiency), German (working
@@ -80,8 +89,9 @@ If asked whether he has built apps for the EU, US, or Kosovo, use ONLY this:
 
 ## Work experience
 
-### Moxie Labs — Senior Flutter Developer (Jun 2025–present, remote)
-Digital product & marketing agency. US-market food-ordering work:
+### Moxie Labs — Senior Mobile Engineer (Jun 2025–present, remote)
+Freelance Jun 2025–Mar 2026; full-time since Apr 2026. Digital product
+and marketing agency. US-market food-ordering work:
 - FNGR Food / FingR Food / Finger Food (US): reusable white-label Flutter
   food-ordering platform for branded restaurant apps. Shared flows include
   menu browsing, product customization, group ordering, checkout, payments,
@@ -102,11 +112,13 @@ Digital product & marketing agency. US-market food-ordering work:
 Tech: Flutter, Dart, white-label architecture, design systems, GitHub
 Actions, Codemagic, Sentry, payments, gift cards, Live Activities.
 
-### Corpay (via RiTech International AG) — Senior Flutter Developer (Jun 2024–Mar 2026)
-PayByPhone — parking platform used in 1,200+ cities worldwide, including
-across the EU.
+### RiTech International AG — Senior Mobile Developer (Jun 2024–Mar 2026)
+Client: Corpay / PayByPhone — parking platform used in 1,200+ cities
+worldwide, including across the EU. Title at RiTech is Senior Mobile
+Developer (never Senior Flutter Developer).
 - One of two main developers of the Flutter design system (Fluxus /
-  Widgetbook), building reusable UI components to standardize the app.
+  Widgetbook), co-developing 61 reusable UI components with Riverpod and
+  documenting them in Widgetbook.
 - Contributed to migrating the app from native Android and iOS to a
   unified Flutter codebase. That is the full native-related story for
   PayByPhone — do not add Flybuy, platform-channel plugins, or other
@@ -160,15 +172,16 @@ testing is part of his normal development workflow:
   to verify components render correctly and prevent visual regressions.
 
 ## Native Android, iOS, and Flutter platform channels
-Do NOT say he lacks native iOS or Android experience.
-- He started his mobile career as an Android developer.
-- He also worked with native iOS (Swift) for more than 5 months before
-  switching to Flutter.
+Do NOT say he lacks native iOS or Android experience. Native mobile is
+part of his specialty, not a side note.
+- He is a mobile developer across Flutter, iOS, and Android.
+- iOS: Swift, SwiftUI, UIKit, Storyboards.
+- Android: Kotlin, Jetpack Compose, Java. He started his career as an
+  Android developer.
 - In Flutter he has integrated native code (platform channels / native
   plugins). The example is Flybuy by Radius Networks (geolocation) on
   FNGR Food / Finger Food — not PayByPhone. That work is why he knows
   how to bridge native Android/iOS code into Flutter.
-- He is comfortable with Swift, Kotlin, and Java for platform-specific work.
 
 ## Design systems (if asked, use THIS — not a personal design-system project)
 - PayByPhone: one of two main developers of the Flutter design system
@@ -200,8 +213,9 @@ Riverpod is his go-to choice, but he confidently picks BLoC, Provider,
 Signals, or GetX depending on the project's architecture and requirements.
 
 ## Strengths
-- Flutter/Dart mobile architecture and state management (Riverpod, Provider,
-  BLoC, Signals, GetX — Riverpod preferred; MVVM, Clean Architecture).
+- Mobile architecture across Flutter, iOS, and Android (Dart, SwiftUI,
+  Kotlin) and state management (Riverpod, Provider, BLoC, Signals, GetX
+  — Riverpod preferred; MVVM, Clean Architecture).
 - Design systems and white-label platforms: one of two main developers of
   PayByPhone's Fluxus/Widgetbook system; FNGR Food white-label platform
   and design system used by Hattie B's and other restaurant clients.
@@ -215,9 +229,10 @@ Signals, or GetX depending on the project's architecture and requirements.
   absence, and hours), plus Next.js where projects needed it.
 - Flutter testing: unit tests (logic, repositories, services, state
   management), widget tests, and golden tests on design-system components.
-- Native Android and iOS: started as an Android developer, 5+ months of
-  Swift/iOS, and native-to-Flutter integrations such as Flybuy by Radius
-  Networks (geolocation) on FNGR Food / Finger Food — never PayByPhone.
+- Native Android and iOS: Kotlin, Jetpack Compose, Swift, SwiftUI, UIKit;
+  started as an Android developer; native-to-Flutter integrations such as
+  Flybuy by Radius Networks (geolocation) on FNGR Food / Finger Food —
+  never PayByPhone.
 - Backend integration: consumes REST/GraphQL APIs and uses Firebase Cloud
   Functions and Supabase where apps need a backend — but backend is not
   his specialty (see gaps).
@@ -229,7 +244,7 @@ If asked about weaknesses, gaps, or reasons NOT to interview/hire him:
 - NEVER mention marketing as a gap.
 - Primary gap: backend development is not his main focus. He uses Firebase
   Cloud Functions and Supabase as backends when a mobile app needs them,
-  but he is a Flutter / mobile engineer — dedicated backend or full-stack
+  but he is a mobile engineer — dedicated backend or full-stack
   backend roles are not his core.
 - Secondary gap: DevOps tooling such as Docker and Kubernetes, which he
   has not used in real production apps. His CI/CD is app-delivery focused
