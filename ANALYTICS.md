@@ -14,8 +14,8 @@ so repeat visits can be counted without collecting names or emails.
 - Page path, event timestamp, sanitized referrer hostname, and source
 - Browser, coarse device type, and operating system derived server-side from
   the user agent
-- Country from trusted edge headers when available
-- Approximate region/city only when an optional GeoIP provider is configured
+- Country, region, and city from a short-lived GeoIP lookup of the request IP.
+  The IP itself is not stored.
 - Labeled project, GitHub, LinkedIn, CV, and contact clicks
 - Visible-page engagement duration in five-second-or-longer batches
 

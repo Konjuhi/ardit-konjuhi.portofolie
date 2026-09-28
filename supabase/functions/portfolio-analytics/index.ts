@@ -129,26 +129,57 @@ function countryName(countryCode?: string): string | undefined {
   }
 }
 
+function headerIp(request: Request): string | undefined {
+  const candidates = [
+    request.headers.get('cf-connecting-ip'),
+    request.headers.get('true-client-ip'),
+    request.headers.get('x-real-ip'),
+    request.headers.get('x-forwarded-for')?.split(',')[0]?.trim(),
+    request.headers.get('fly-client-ip'),
+  ]
+  return candidates.find((value) => Boolean(value && value !== '127.0.0.1' && value !== '::1'))
+}
+
+function headerCountryCode(request: Request): string | undefined {
+  const raw = decodeHeader(
+    request.headers.get('cf-ipcountry')
+      ?? request.headers.get('x-vercel-ip-country')
+      ?? request.headers.get('cloudfront-viewer-country')
+      ?? request.headers.get('x-country-code'),
+    2,
+  )?.toUpperCase()
+  if (!raw || raw === 'XX' || raw === 'T1' || raw === 'A1' || raw === 'A2') {
+    return undefined
+  }
+  return raw
+}
+
 async function resolveLocation(request: Request): Promise<Location> {
-  const headerCountry = decodeHeader(request.headers.get('cf-ipcountry') ?? request.headers.get('x-country-code'), 2)?.toUpperCase()
+  const headerCountry = headerCountryCode(request)
   const fromHeaders: Location = {
     countryCode: headerCountry,
     countryName: countryName(headerCountry),
-    region: decodeHeader(request.headers.get('cf-region') ?? request.headers.get('x-region'), 120),
-    city: decodeHeader(request.headers.get('cf-ipcity') ?? request.headers.get('x-city'), 120),
+    region: decodeHeader(
+      request.headers.get('cf-region')
+        ?? request.headers.get('x-vercel-ip-country-region')
+        ?? request.headers.get('x-region'),
+      120,
+    ),
+    city: decodeHeader(
+      request.headers.get('cf-ipcity')
+        ?? request.headers.get('x-vercel-ip-city')
+        ?? request.headers.get('x-city'),
+      120,
+    ),
   }
 
-  if (fromHeaders.region || fromHeaders.city) {
+  if (fromHeaders.countryName && fromHeaders.city) {
     return fromHeaders
   }
 
-  // Optional and disabled by default. If enabled, the provider receives the
-  // transient IP solely to derive coarse location; the IP is never persisted.
-  const template = Deno.env.get('GEOIP_URL_TEMPLATE')
-  const forwardedIp = request.headers.get('cf-connecting-ip')
-    ?? request.headers.get('x-real-ip')
-    ?? request.headers.get('x-forwarded-for')?.split(',')[0]?.trim()
-  if (!template?.startsWith('https://') || !template.includes('{ip}') || !forwardedIp) {
+  const template = Deno.env.get('GEOIP_URL_TEMPLATE') ?? 'https://ipwho.is/{ip}'
+  const forwardedIp = headerIp(request)
+  if (!template.startsWith('https://') || !template.includes('{ip}') || !forwardedIp) {
     return fromHeaders
   }
 
@@ -159,12 +190,13 @@ async function resolveLocation(request: Request): Promise<Location> {
     })
     if (!response.ok) return fromHeaders
     const data = await response.json()
+    if (data?.success === false) return fromHeaders
     const code = boundedString(data.country_code ?? data.countryCode, 2)?.toUpperCase()
     return {
       countryCode: code ?? fromHeaders.countryCode,
       countryName: boundedString(data.country_name ?? data.country, 100) ?? countryName(code) ?? fromHeaders.countryName,
-      region: boundedString(data.region ?? data.region_name, 120),
-      city: boundedString(data.city, 120),
+      region: boundedString(data.region ?? data.region_name, 120) ?? fromHeaders.region,
+      city: boundedString(data.city, 120) ?? fromHeaders.city,
     }
   } catch {
     return fromHeaders
