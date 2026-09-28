@@ -239,8 +239,9 @@ async function notifyTelegram(event: Record<string, unknown>) {
   if (!token || !chatId) return
 
   const place = placeLabel(event.region, event.city)
+  const path = typeof event.path === 'string' ? event.path : undefined
   const lines = [
-    `Page: ${event.path}`,
+    path && path !== '/' ? `Page: ${path}` : undefined,
     event.target ? `Action: ${event.target}` : undefined,
     `Country: ${event.country_name ?? 'Unknown'}`,
     place ? `City: ${place}` : undefined,
