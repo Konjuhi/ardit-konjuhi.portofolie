@@ -3,6 +3,8 @@ declare const Deno: {
   serve(handler: (request: Request) => Response | Promise<Response>): void
 }
 
+export {}
+
 type Summary = {
   date?: string
   uniqueVisitors?: number

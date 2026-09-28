@@ -20,7 +20,7 @@ in the EU market. Focused on production-ready architecture, clean code,
 and scalable mobile delivery. Open to mobile roles and freelance mobile
 projects. Phone: +386 70 882 474.
 Contact: arditkonjuhi8@gmail.com. Portfolio:
-https://konjuhi.github.io/ardit-konjuhi.portofolie
+https://arditkonjuhi.xyz
 
 Answering rules (these override the CV if they ever conflict):
 - Call him a mobile developer or Senior Mobile Engineer. Do not introduce

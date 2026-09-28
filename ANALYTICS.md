@@ -68,7 +68,7 @@ supabase secrets set --project-ref orutyfitgyvjgmwqrnsd \
   TELEGRAM_BOT_TOKEN=... \
   TELEGRAM_CHAT_ID=... \
   SUMMARY_SECRET=... \
-  ANALYTICS_ALLOWED_ORIGINS=https://konjuhi.github.io
+  ANALYTICS_ALLOWED_ORIGINS=https://arditkonjuhi.xyz,https://www.arditkonjuhi.xyz,https://konjuhi.github.io,http://localhost:5173
 ```
 
 `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` are provided to hosted Edge

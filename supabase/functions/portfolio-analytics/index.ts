@@ -3,6 +3,8 @@ declare const Deno: {
   serve(handler: (request: Request) => Response | Promise<Response>): void
 }
 
+export {}
+
 type EventType = 'session_start' | 'page_view' | 'click' | 'engagement'
 
 type AnalyticsRequest = {
@@ -24,7 +26,12 @@ type Location = {
   city?: string
 }
 
-const defaultOrigins = ['https://konjuhi.github.io', 'http://localhost:5173']
+const defaultOrigins = [
+  'https://arditkonjuhi.xyz',
+  'https://www.arditkonjuhi.xyz',
+  'https://konjuhi.github.io',
+  'http://localhost:5173',
+]
 const validEventTypes = new Set<EventType>(['session_start', 'page_view', 'click', 'engagement'])
 const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
 
