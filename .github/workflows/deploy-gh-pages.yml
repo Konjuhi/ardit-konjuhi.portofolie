@@ -33,9 +33,9 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_SUPABASE_URL: https://orutyfitgyvjgmwqrnsd.supabase.co
-          VITE_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_KEY }}
-          VITE_ANALYTICS_ENDPOINT: https://orutyfitgyvjgmwqrnsd.supabase.co/functions/v1/portfolio-analytics
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_ANALYTICS_ENDPOINT: ${{ secrets.VITE_ANALYTICS_ENDPOINT }}
 
       - name: SPA fallback
         run: cp dist/index.html dist/404.html
