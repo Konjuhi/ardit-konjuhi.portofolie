@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import AskAiChat from './components/AskAiChat'
 import JobFitAssessment from './components/JobFitAssessment'
+import { analyticsNeedsConsent, setAnalyticsConsent } from './lib/analytics'
 import './App.css'
 
 type ThemeMode = 'light' | 'dark'
@@ -358,6 +359,7 @@ function App() {
   const [navLockTarget, setNavLockTarget] = useState<string | null>(null)
   const [chatOpen, setChatOpen] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [showAnalyticsConsent, setShowAnalyticsConsent] = useState(analyticsNeedsConsent)
   const [theme, setTheme] = useState<ThemeMode>(() => {
     const savedTheme = localStorage.getItem('theme-mode')
     return savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : 'dark'
@@ -533,6 +535,7 @@ function App() {
                 key={link.id}
                 className={activeNav === link.id ? 'active' : ''}
                 href={`#${link.id}`}
+                data-analytics={link.id === 'contact' ? 'contact:navigation' : undefined}
                 onClick={(event) => {
                   event.preventDefault()
                   setMenuOpen(false)
@@ -587,17 +590,17 @@ function App() {
                 View Projects
                 <IconArrowRight />
               </a>
-              <a className="btn btn-secondary" href={cvUrl} target="_blank" rel="noreferrer noopener">
+              <a className="btn btn-secondary" href={cvUrl} target="_blank" rel="noreferrer noopener" data-analytics="cv:open">
                 <IconDownload />
                 Download CV
               </a>
             </div>
             <div className="social-row">
-              <a href="https://github.com/Konjuhi" target="_blank" rel="noreferrer noopener">
+              <a href="https://github.com/Konjuhi" target="_blank" rel="noreferrer noopener" data-analytics="github">
                 <IconGitHub />
                 GitHub
               </a>
-              <a href="https://www.linkedin.com/in/ardit-konjuhi-185a6719b/" target="_blank" rel="noreferrer noopener">
+              <a href="https://www.linkedin.com/in/ardit-konjuhi-185a6719b/" target="_blank" rel="noreferrer noopener" data-analytics="linkedin">
                 <IconLinkedIn />
                 LinkedIn
               </a>
@@ -636,25 +639,25 @@ function App() {
                   ))}
                 </ul>
                 <div className="card-links">
-                  <a className="card-link" href={project.url} target="_blank" rel="noreferrer noopener">
+                  <a className="card-link" href={project.url} target="_blank" rel="noreferrer noopener" data-analytics={`project:${project.name}:website`}>
                     {project.primaryCtaLabel ?? 'Visit website'}
                     <IconExternal />
                   </a>
                   <div className="store-links">
                     {project.appStoreUrl ? (
-                      <a href={project.appStoreUrl} target="_blank" rel="noreferrer noopener">
+                      <a href={project.appStoreUrl} target="_blank" rel="noreferrer noopener" data-analytics={`project:${project.name}:app-store`}>
                         App Store
                         <IconExternal />
                       </a>
                     ) : null}
                     {project.playStoreUrl ? (
-                      <a href={project.playStoreUrl} target="_blank" rel="noreferrer noopener">
+                      <a href={project.playStoreUrl} target="_blank" rel="noreferrer noopener" data-analytics={`project:${project.name}:play-store`}>
                         Google Play
                         <IconExternal />
                       </a>
                     ) : null}
                     {project.widgetbookUrl ? (
-                      <a href={project.widgetbookUrl} target="_blank" rel="noreferrer noopener">
+                      <a href={project.widgetbookUrl} target="_blank" rel="noreferrer noopener" data-analytics={`project:${project.name}:components`}>
                         View Components
                         <IconExternal />
                       </a>
@@ -685,18 +688,18 @@ function App() {
                   ))}
                 </ul>
                 <div className="store-links">
-                  <a href={project.url} target="_blank" rel="noreferrer noopener">
+                  <a href={project.url} target="_blank" rel="noreferrer noopener" data-analytics={`project:${project.name}:website`}>
                     {project.primaryCtaLabel ?? 'Visit website'}
                     <IconExternal />
                   </a>
                   {project.appStoreUrl ? (
-                    <a href={project.appStoreUrl} target="_blank" rel="noreferrer noopener">
+                    <a href={project.appStoreUrl} target="_blank" rel="noreferrer noopener" data-analytics={`project:${project.name}:app-store`}>
                       App Store
                       <IconExternal />
                     </a>
                   ) : null}
                   {project.playStoreUrl ? (
-                    <a href={project.playStoreUrl} target="_blank" rel="noreferrer noopener">
+                    <a href={project.playStoreUrl} target="_blank" rel="noreferrer noopener" data-analytics={`project:${project.name}:play-store`}>
                       Google Play
                       <IconExternal />
                     </a>
@@ -780,7 +783,7 @@ function App() {
                       {product.url ? (
                         <>
                           {' · '}
-                          <a href={product.url} target="_blank" rel="noreferrer noopener">
+                          <a href={product.url} target="_blank" rel="noreferrer noopener" data-analytics={`project:${product.name}:website`}>
                             {product.ctaLabel ?? 'Open'}
                           </a>
                         </>
@@ -788,7 +791,7 @@ function App() {
                       {product.appStoreUrl ? (
                         <>
                           {' · '}
-                          <a href={product.appStoreUrl} target="_blank" rel="noreferrer noopener">
+                          <a href={product.appStoreUrl} target="_blank" rel="noreferrer noopener" data-analytics={`project:${product.name}:app-store`}>
                             App Store
                           </a>
                         </>
@@ -796,7 +799,7 @@ function App() {
                       {product.playStoreUrl ? (
                         <>
                           {' · '}
-                          <a href={product.playStoreUrl} target="_blank" rel="noreferrer noopener">
+                          <a href={product.playStoreUrl} target="_blank" rel="noreferrer noopener" data-analytics={`project:${product.name}:play-store`}>
                             Play Store
                           </a>
                         </>
@@ -828,11 +831,11 @@ function App() {
                 Builds maintainable, testable apps with MVVM — Views, ViewModels, Repositories, and Services.
               </p>
               <div className="cv-actions">
-                <a className="btn btn-primary" href={cvUrl} download>
+                <a className="btn btn-primary" href={cvUrl} download data-analytics="cv:download">
                   <IconDownload />
                   Download CV
                 </a>
-                <a className="btn btn-secondary" href={cvUrl} target="_blank" rel="noreferrer noopener">
+                <a className="btn btn-secondary" href={cvUrl} target="_blank" rel="noreferrer noopener" data-analytics="cv:open">
                   Open full preview
                 </a>
               </div>
@@ -905,7 +908,7 @@ function App() {
               Open to mobile roles and freelance mobile projects. The fastest way to reach me is by email.
             </p>
             <div className="cta-row">
-              <a className="btn btn-primary" href="mailto:arditkonjuhi8@gmail.com">
+              <a className="btn btn-primary" href="mailto:arditkonjuhi8@gmail.com" data-analytics="contact:email">
                 <IconMail />
                 Email me
               </a>
@@ -915,7 +918,7 @@ function App() {
                 <IconMapPin />
                 Maribor, Slovenia
               </span>
-              <a href="tel:+38670882474">
+              <a href="tel:+38670882474" data-analytics="contact:phone">
                 <IconPhone />
                 +386 70 882 474
               </a>
@@ -928,14 +931,15 @@ function App() {
         <div className="footer-inner">
           <p>© 2026 Ardit Konjuhi — Senior Mobile Engineer</p>
           <div className="footer-links">
-            <a href="https://github.com/Konjuhi" target="_blank" rel="noreferrer noopener">
+            <a href="https://github.com/Konjuhi" target="_blank" rel="noreferrer noopener" data-analytics="github">
               GitHub
             </a>
-            <a href="https://www.linkedin.com/in/ardit-konjuhi-185a6719b/" target="_blank" rel="noreferrer noopener">
+            <a href="https://www.linkedin.com/in/ardit-konjuhi-185a6719b/" target="_blank" rel="noreferrer noopener" data-analytics="linkedin">
               LinkedIn
             </a>
-            <a href="mailto:arditkonjuhi8@gmail.com">Email</a>
+            <a href="mailto:arditkonjuhi8@gmail.com" data-analytics="contact:email">Email</a>
           </div>
+          <p className="privacy-note">Anonymous visit analytics only; no names, precise location, or raw IP addresses are stored.</p>
         </div>
       </footer>
 
@@ -966,6 +970,37 @@ function App() {
       >
         Top
       </button>
+
+      {showAnalyticsConsent ? (
+        <aside className="analytics-consent" aria-label="Anonymous analytics choice">
+          <p>
+            May I use anonymous analytics to improve this portfolio? No names, precise location, or raw IP addresses
+            are stored.
+          </p>
+          <div className="analytics-consent-actions">
+            <button
+              className="btn btn-primary btn-compact"
+              type="button"
+              onClick={() => {
+                setAnalyticsConsent(true)
+                setShowAnalyticsConsent(false)
+              }}
+            >
+              Allow analytics
+            </button>
+            <button
+              className="btn btn-secondary btn-compact"
+              type="button"
+              onClick={() => {
+                setAnalyticsConsent(false)
+                setShowAnalyticsConsent(false)
+              }}
+            >
+              No thanks
+            </button>
+          </div>
+        </aside>
+      ) : null}
     </>
   )
 }

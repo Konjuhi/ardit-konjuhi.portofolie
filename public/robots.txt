@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://konjuhi.github.io/ardit-konjuhi.portofolie/sitemap.xml

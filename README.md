@@ -15,3 +15,8 @@ npm run dev
 npm run build
 npm run preview
 ```
+
+## Analytics
+
+The optional Supabase analytics setup is documented in [ANALYTICS.md](./ANALYTICS.md).
+It is disabled when `VITE_ANALYTICS_ENDPOINT` is not set.
