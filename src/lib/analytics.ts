@@ -13,7 +13,6 @@ type AnalyticsPayload = {
 }
 
 const endpoint = import.meta.env.VITE_ANALYTICS_ENDPOINT as string | undefined
-const consentKey = 'portfolio_analytics_consent_v1'
 const visitorKey = 'portfolio_visitor_id_v1'
 const sessionKey = 'portfolio_session_id_v1'
 const sessionStartedKey = 'portfolio_session_started_v1'
@@ -80,30 +79,8 @@ function postEvent(payload: AnalyticsPayload) {
 
 let initialized = false
 
-export function analyticsConsentStatus(): 'accepted' | 'declined' | 'unset' {
-  if (!endpoint || typeof window === 'undefined' || navigator.doNotTrack === '1') {
-    return 'declined'
-  }
-  const value = storageValue(window.localStorage, consentKey)
-  return value === 'accepted' || value === 'declined' ? value : 'unset'
-}
-
-export function analyticsNeedsConsent(): boolean {
-  return Boolean(endpoint) && analyticsConsentStatus() === 'unset'
-}
-
-export function setAnalyticsConsent(accepted: boolean) {
-  if (!endpoint || typeof window === 'undefined') {
-    return
-  }
-  saveStorageValue(window.localStorage, consentKey, accepted ? 'accepted' : 'declined')
-  if (accepted) {
-    initializeAnalytics()
-  }
-}
-
 export function initializeAnalytics() {
-  if (!endpoint || typeof window === 'undefined' || initialized || analyticsConsentStatus() !== 'accepted') {
+  if (!endpoint || typeof window === 'undefined' || initialized) {
     return
   }
   initialized = true

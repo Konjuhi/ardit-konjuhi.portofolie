@@ -4,8 +4,9 @@ This repository contains a privacy-conscious analytics implementation for the
 portfolio. It is disabled unless `VITE_ANALYTICS_ENDPOINT` is present at build
 time.
 
-Tracking is opt-in. The frontend asks before creating visitor/session IDs,
-stores the choice locally, and treats browser Do Not Track as a refusal.
+Tracking starts automatically for anonymous visits. The frontend does not
+show a consent popup. Visitor/session IDs are random UUIDs stored locally
+so repeat visits can be counted without collecting names or emails.
 
 ## Data collected
 

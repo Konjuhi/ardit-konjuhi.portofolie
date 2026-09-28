@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import AskAiChat from './components/AskAiChat'
 import JobFitAssessment from './components/JobFitAssessment'
-import { analyticsNeedsConsent, setAnalyticsConsent } from './lib/analytics'
 import './App.css'
 
 type ThemeMode = 'light' | 'dark'
@@ -359,7 +358,6 @@ function App() {
   const [navLockTarget, setNavLockTarget] = useState<string | null>(null)
   const [chatOpen, setChatOpen] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const [showAnalyticsConsent, setShowAnalyticsConsent] = useState(analyticsNeedsConsent)
   const [theme, setTheme] = useState<ThemeMode>(() => {
     const savedTheme = localStorage.getItem('theme-mode')
     return savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : 'dark'
@@ -970,37 +968,6 @@ function App() {
       >
         Top
       </button>
-
-      {showAnalyticsConsent ? (
-        <aside className="analytics-consent" aria-label="Anonymous analytics choice">
-          <p>
-            May I use anonymous analytics to improve this portfolio? No names, precise location, or raw IP addresses
-            are stored.
-          </p>
-          <div className="analytics-consent-actions">
-            <button
-              className="btn btn-primary btn-compact"
-              type="button"
-              onClick={() => {
-                setAnalyticsConsent(true)
-                setShowAnalyticsConsent(false)
-              }}
-            >
-              Allow analytics
-            </button>
-            <button
-              className="btn btn-secondary btn-compact"
-              type="button"
-              onClick={() => {
-                setAnalyticsConsent(false)
-                setShowAnalyticsConsent(false)
-              }}
-            >
-              No thanks
-            </button>
-          </div>
-        </aside>
-      ) : null}
     </>
   )
 }

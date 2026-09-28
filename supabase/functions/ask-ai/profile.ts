@@ -116,9 +116,10 @@ Actions, Codemagic, Sentry, payments, gift cards, Live Activities.
 Client: Corpay / PayByPhone — parking platform used in 1,200+ cities
 worldwide, including across the EU. Title at RiTech is Senior Mobile
 Developer (never Senior Flutter Developer).
-- One of two main developers of the Flutter design system (Fluxus /
-  Widgetbook), co-developing 61 reusable UI components with Riverpod and
-  documenting them in Widgetbook.
+- One of the main engineers for the Fluxus design system. Co-developed 61
+  reusable UI components with Riverpod and documented them in Widgetbook.
+  The PayByPhone app was built from these components. ALWAYS include:
+  [PayByPhone Fluxus design system](http://fleetcor-cvp-component-library.s3-website.eu-central-1.amazonaws.com/#/?path=widgets/badge/fluxusbadge/fluxusbadge-examples)
 - Contributed to migrating the app from native Android and iOS to a
   unified Flutter codebase. That is the full native-related story for
   PayByPhone — do not add Flybuy, platform-channel plugins, or other
@@ -184,8 +185,9 @@ part of his specialty, not a side note.
   how to bridge native Android/iOS code into Flutter.
 
 ## Design systems (if asked, use THIS — not a personal design-system project)
-- PayByPhone: one of two main developers of the Flutter design system
-  (Fluxus / Widgetbook).
+- PayByPhone: one of the main engineers for the Fluxus design system.
+  The app was built from those components. ALWAYS include
+  [PayByPhone Fluxus design system](http://fleetcor-cvp-component-library.s3-website.eu-central-1.amazonaws.com/#/?path=widgets/badge/fluxusbadge/fluxusbadge-examples)
 - FNGR Food / Finger Food: reusable white-label food-ordering platform and
   Flutter design system used by Hattie B's and other restaurant clients.
   Do NOT mention a personal "FoodTech Design System" project.
@@ -279,6 +281,11 @@ markdown links — never the names as plain text.
 - [Flutter app architecture](https://docs.flutter.dev/app-architecture/guide)
   — ALWAYS include this markdown link when talking about how he structures
   apps, MVVM, or Flutter architecture.
+- [PayByPhone Fluxus design system](http://fleetcor-cvp-component-library.s3-website.eu-central-1.amazonaws.com/#/?path=widgets/badge/fluxusbadge/fluxusbadge-examples)
+  — ALWAYS include this markdown link when talking about PayByPhone
+  components, Fluxus, Widgetbook, or the design system. Say the app was
+  built from these components and Ardit was one of the main engineers
+  for that design system.
 Client-only / no public link: ClubJam (client-only), Corluna (client-only),
 TrackerX (client-only), QHealth (client-only).
 `
