@@ -213,23 +213,32 @@ function shouldNotify(eventType: EventType, target?: string): boolean {
   )
 }
 
+function deviceLabel(deviceType: unknown): string {
+  if (deviceType === 'mobile') return 'mobile'
+  if (deviceType === 'tablet') return 'tablet'
+  return 'computer'
+}
+
+function placeLabel(region: unknown, city: unknown): string | undefined {
+  const parts = [region, city].filter((value): value is string => typeof value === 'string' && value.length > 0)
+  if (parts.length === 0) return undefined
+  if (parts.length === 2 && parts[0] === parts[1]) return parts[0]
+  return parts.join(' / ')
+}
+
 async function notifyTelegram(event: Record<string, unknown>) {
   const token = Deno.env.get('TELEGRAM_BOT_TOKEN')
   const chatId = Deno.env.get('TELEGRAM_CHAT_ID')
   if (!token || !chatId) return
 
-  const title = event.event_type === 'session_start' ? 'New portfolio visitor' : 'Portfolio interaction'
+  const place = placeLabel(event.region, event.city)
   const lines = [
-    title,
     `Page: ${event.path}`,
     event.target ? `Action: ${event.target}` : undefined,
     `Country: ${event.country_name ?? 'Unknown'}`,
-    event.region || event.city ? `Region/City: ${[event.region, event.city].filter(Boolean).join(' / ')}` : undefined,
-    `Device: ${event.device_type ?? 'Unknown'}`,
-    `Browser: ${event.browser ?? 'Unknown'}`,
-    `Referrer: ${event.source ?? 'Direct'}`,
+    place ? `City: ${place}` : undefined,
+    `Device: ${deviceLabel(event.device_type)}`,
     `Time: ${new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Ljubljana', hour: '2-digit', minute: '2-digit' }).format(new Date())}`,
-    `New visitor: ${event.is_new_visitor ? 'yes' : 'no'}`,
   ].filter(Boolean).join('\n')
 
   await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {

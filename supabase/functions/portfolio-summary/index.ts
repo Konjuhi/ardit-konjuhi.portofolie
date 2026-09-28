@@ -37,7 +37,6 @@ async function sendTelegram(summary: Summary) {
     `Unique visitors: ${summary.uniqueVisitors ?? 0}`,
     `Page views: ${summary.pageViews ?? 0}`,
     `Top country: ${summary.topCountry ?? 'Unknown'}`,
-    `Top referrer: ${summary.topReferrer ?? 'Direct'}`,
     `Most viewed project: ${summary.mostViewedProject ?? 'None'}`,
     `GitHub clicks: ${summary.githubClicks ?? 0}`,
     `LinkedIn clicks: ${summary.linkedinClicks ?? 0}`,
