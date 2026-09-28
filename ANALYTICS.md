@@ -36,9 +36,9 @@ Scheduled authenticated request
   -> Telegram Bot API
 ```
 
-The existing AI assistant remains on Supabase project
-`orutyfitgyvjgmwqrnsd`. Analytics is configured for project
-`qbqvedvzakahpaqrdfkh`, so changing analytics cannot break the AI function.
+The existing AI assistant and analytics both run on Supabase project
+`orutyfitgyvjgmwqrnsd`. Analytics uses separate Edge Functions
+(`portfolio-analytics`, `portfolio-summary`) so it does not change `ask-ai`.
 
 ## Review and deploy
 
@@ -53,17 +53,17 @@ After reviewing it, authenticate the Supabase CLI and always specify the target
 project because this checkout is currently linked to a different project:
 
 ```bash
-supabase link --project-ref qbqvedvzakahpaqrdfkh
+supabase link --project-ref orutyfitgyvjgmwqrnsd
 supabase db push --dry-run
 supabase db push
-supabase functions deploy portfolio-analytics --project-ref qbqvedvzakahpaqrdfkh
-supabase functions deploy portfolio-summary --project-ref qbqvedvzakahpaqrdfkh
+supabase functions deploy portfolio-analytics --project-ref orutyfitgyvjgmwqrnsd
+supabase functions deploy portfolio-summary --project-ref orutyfitgyvjgmwqrnsd
 ```
 
 Set secrets through the CLI or Supabase dashboard; never put values in Git:
 
 ```bash
-supabase secrets set --project-ref qbqvedvzakahpaqrdfkh \
+supabase secrets set --project-ref orutyfitgyvjgmwqrnsd \
   TELEGRAM_BOT_TOKEN=... \
   TELEGRAM_CHAT_ID=... \
   SUMMARY_SECRET=... \
@@ -79,7 +79,7 @@ Leave this unset for the strongest privacy. To enable coarse city/region,
 choose a provider and set an HTTPS template containing `{ip}`, for example:
 
 ```bash
-supabase secrets set --project-ref qbqvedvzakahpaqrdfkh \
+supabase secrets set --project-ref orutyfitgyvjgmwqrnsd \
   GEOIP_URL_TEMPLATE='https://ipapi.co/{ip}/json/'
 ```
 
@@ -105,7 +105,7 @@ curl -X POST \
   -H 'Authorization: Bearer <SUMMARY_SECRET>' \
   -H 'Content-Type: application/json' \
   -d '{"reportDate":"YYYY-MM-DD"}' \
-  https://qbqvedvzakahpaqrdfkh.supabase.co/functions/v1/portfolio-summary
+  https://orutyfitgyvjgmwqrnsd.supabase.co/functions/v1/portfolio-summary
 ```
 
 For a daily schedule, invoke that endpoint from Supabase Cron at the desired

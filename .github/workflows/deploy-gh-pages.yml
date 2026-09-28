@@ -35,7 +35,7 @@ jobs:
         env:
           VITE_SUPABASE_URL: https://orutyfitgyvjgmwqrnsd.supabase.co
           VITE_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_KEY }}
-          VITE_ANALYTICS_ENDPOINT: https://qbqvedvzakahpaqrdfkh.supabase.co/functions/v1/portfolio-analytics
+          VITE_ANALYTICS_ENDPOINT: https://orutyfitgyvjgmwqrnsd.supabase.co/functions/v1/portfolio-analytics
 
       - name: SPA fallback
         run: cp dist/index.html dist/404.html
