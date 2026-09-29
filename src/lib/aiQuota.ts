@@ -105,6 +105,17 @@ export function getRemaining(kind: QuotaKind): number {
 
 // Spend one slot only after a successful answer. Failures do not count.
 // Returns remaining after spending, or null if today's limit is already used.
+export function exhaust(kind: QuotaKind): number {
+  const quota = readQuota()
+  if (kind === 'fit') {
+    quota.fit = MAX_DAILY_FIT
+  } else {
+    quota.chat = MAX_DAILY_CHAT
+  }
+  writeQuota(quota)
+  return 0
+}
+
 export function consume(kind: QuotaKind): number | null {
   const quota = readQuota()
   const max = maxFor(kind)

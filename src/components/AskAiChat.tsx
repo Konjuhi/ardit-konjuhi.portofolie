@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { askAi, MAX_CHAT_CHARS } from '../lib/askAi'
-import { consume, getRemaining, MAX_DAILY_CHAT } from '../lib/aiQuota'
+import { askAi, isDailyLimitError, MAX_CHAT_CHARS } from '../lib/askAi'
+import { consume, exhaust, getRemaining, MAX_DAILY_CHAT } from '../lib/aiQuota'
 import { LinkedText } from '../lib/linkify'
 import { isSupabaseConfigured } from '../lib/supabaseClient'
 
@@ -108,7 +108,11 @@ function AskAiChat() {
       setRemaining(consume('chat') ?? 0)
       setMessages((prev) => [...prev, { role: 'ai', text: answer }])
     } catch (err) {
-      setRemaining(getRemaining('chat'))
+      if (isDailyLimitError(err)) {
+        setRemaining(exhaust('chat'))
+      } else {
+        setRemaining(getRemaining('chat'))
+      }
       setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
     } finally {
       setLoading(false)

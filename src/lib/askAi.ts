@@ -8,10 +8,11 @@ export const MAX_FIT_CHARS = 4000
 
 export type AskType = 'chat' | 'fit-assessment'
 
-export type AiFailureKind = 'capacity' | 'network' | 'unavailable'
+export type AiFailureKind = 'capacity' | 'daily_limit' | 'network' | 'unavailable'
 
 const USER_MESSAGES: Record<AiFailureKind, string> = {
   capacity: 'The AI service is at capacity right now. Please try again later today or tomorrow.',
+  daily_limit: 'Daily question limit reached — come back tomorrow.',
   network: 'Could not reach the AI service. Check your internet connection and try again.',
   unavailable: 'The AI assistant hit an unexpected problem. Please try again later.',
 }
@@ -27,8 +28,11 @@ function bodyCode(body: unknown): string | undefined {
   }
   const code = (body as FunctionErrorBody).code
   const message = (body as FunctionErrorBody).error
-  if (code === 'capacity' || code === 'unavailable') {
+  if (code === 'capacity' || code === 'daily_limit' || code === 'unavailable') {
     return code
+  }
+  if (typeof message === 'string' && message.toLowerCase().includes('daily question limit')) {
+    return 'daily_limit'
   }
   if (typeof message === 'string' && message.toLowerCase().includes('at capacity')) {
     return 'capacity'
@@ -53,6 +57,10 @@ async function readErrorBody(error: { context?: Response }, data: unknown): Prom
 
 function failureFrom(kind: AiFailureKind): Error {
   return new Error(USER_MESSAGES[kind])
+}
+
+export function isDailyLimitError(error: unknown): boolean {
+  return error instanceof Error && error.message === USER_MESSAGES.daily_limit
 }
 
 export async function askAi(prompt: string, type: AskType): Promise<string> {
@@ -81,6 +89,9 @@ export async function askAi(prompt: string, type: AskType): Promise<string> {
       const status = error instanceof FunctionsHttpError ? error.context.status : undefined
       const code = bodyCode(body)
 
+      if (code === 'daily_limit') {
+        throw failureFrom('daily_limit')
+      }
       if (code === 'capacity' || status === 429) {
         throw failureFrom('capacity')
       }

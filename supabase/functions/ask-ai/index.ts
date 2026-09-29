@@ -6,12 +6,15 @@
 //     or:  supabase secrets set OPENAI_API_KEY=...   (fallback, gpt-4o-mini)
 
 import { PROFILE_CONTEXT } from './profile.ts'
+import { consumeDailyQuota, refundDailyQuota } from './quota.ts'
 
 // Minimal Deno typings so this file is self-contained in a Node-oriented IDE.
 declare const Deno: {
   env: { get(name: string): string | undefined }
   serve(handler: (req: Request) => Response | Promise<Response>): void
 }
+
+export {}
 
 const MAX_CHAT_CHARS = 1500
 // Job descriptions run long; allow more input for fit assessments.
@@ -282,19 +285,39 @@ async function handleRequest(req: Request): Promise<Response> {
 
   const geminiKey = Deno.env.get('GEMINI_API_KEY')
   const openAiKey = Deno.env.get('OPENAI_API_KEY')
+  const quotaKind = type === 'fit-assessment' ? 'fit' : 'chat'
 
+  let reserved = false
   try {
+    const quota = await consumeDailyQuota(req, quotaKind)
+    if (quota === 'blocked') {
+      return jsonResponse(
+        {
+          code: 'daily_limit',
+          error: 'Daily question limit reached — come back tomorrow.',
+        },
+        429,
+      )
+    }
+    reserved = quota === 'allowed'
+
     let answer: string
     if (geminiKey) {
       answer = await callGemini(geminiKey, systemPrompt, prompt)
     } else if (openAiKey) {
       answer = await callOpenAi(openAiKey, systemPrompt, prompt)
     } else {
+      if (reserved) {
+        await refundDailyQuota(req, quotaKind)
+      }
       return jsonResponse({ error: 'No LLM API key configured on the server' }, 500)
     }
 
     return jsonResponse({ answer }, 200)
   } catch (error) {
+    if (reserved) {
+      await refundDailyQuota(req, quotaKind)
+    }
     console.error('ask-ai error:', error)
     const quotaHit = error instanceof Error && error.message === 'QUOTA'
     return jsonResponse(

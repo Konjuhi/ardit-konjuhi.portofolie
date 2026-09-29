@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import AskAiChat from './components/AskAiChat'
+import AskAiTip, { hasSeenAskAiTip, markAskAiTipSeen } from './components/AskAiTip'
 import JobFitAssessment from './components/JobFitAssessment'
 import './App.css'
 
@@ -357,6 +358,7 @@ function App() {
   const [activeNav, setActiveNav] = useState('projects')
   const [navLockTarget, setNavLockTarget] = useState<string | null>(null)
   const [chatOpen, setChatOpen] = useState(false)
+  const [showAiTip, setShowAiTip] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [theme, setTheme] = useState<ThemeMode>(() => {
     const savedTheme = localStorage.getItem('theme-mode')
@@ -369,14 +371,44 @@ function App() {
   }, [theme])
 
   useEffect(() => {
-    if (!chatOpen) {
+    if (hasSeenAskAiTip()) {
+      return
+    }
+    const timeoutId = window.setTimeout(() => setShowAiTip(true), 800)
+    return () => window.clearTimeout(timeoutId)
+  }, [])
+
+  useEffect(() => {
+    if (!chatOpen || !showAiTip) {
+      return
+    }
+    markAskAiTipSeen()
+    setShowAiTip(false)
+  }, [chatOpen, showAiTip])
+
+  const dismissAiTip = (openChat = false) => {
+    markAskAiTipSeen()
+    setShowAiTip(false)
+    if (openChat) {
+      setMenuOpen(false)
+      setChatOpen(true)
+    }
+  }
+
+  useEffect(() => {
+    if (!chatOpen && !showAiTip) {
       return
     }
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setChatOpen(false)
+      if (event.key !== 'Escape') {
+        return
       }
+      if (chatOpen) {
+        setChatOpen(false)
+        return
+      }
+      dismissAiTip()
     }
 
     document.body.style.overflow = 'hidden'
@@ -386,7 +418,7 @@ function App() {
       document.body.style.overflow = ''
       window.removeEventListener('keydown', onKeyDown)
     }
-  }, [chatOpen])
+  }, [chatOpen, showAiTip])
 
   const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
   const cvUrl = asset('/Ardit-Konjuhi-CV.pdf?v=20260928-1')
@@ -940,6 +972,8 @@ function App() {
           <p className="privacy-note">Anonymous visit analytics only; no names, precise location, or raw IP addresses are stored.</p>
         </div>
       </footer>
+
+      <AskAiTip open={showAiTip} onAsk={() => dismissAiTip(true)} onDismiss={() => dismissAiTip()} />
 
       <div
         className={`chat-drawer-backdrop ${chatOpen ? 'open' : ''}`}

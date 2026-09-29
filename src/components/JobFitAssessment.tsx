@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { askAi, MAX_FIT_CHARS } from '../lib/askAi'
-import { consume, getRemaining, MAX_DAILY_FIT } from '../lib/aiQuota'
+import { askAi, isDailyLimitError, MAX_FIT_CHARS } from '../lib/askAi'
+import { consume, exhaust, getRemaining, MAX_DAILY_FIT } from '../lib/aiQuota'
 import { LinkedText } from '../lib/linkify'
 import { isSupabaseConfigured } from '../lib/supabaseClient'
 
@@ -29,7 +29,11 @@ function JobFitAssessment() {
       setRemaining(consume('fit') ?? 0)
       setResult(answer)
     } catch (err) {
-      setRemaining(getRemaining('fit'))
+      if (isDailyLimitError(err)) {
+        setRemaining(exhaust('fit'))
+      } else {
+        setRemaining(getRemaining('fit'))
+      }
       setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
     } finally {
       setLoading(false)
