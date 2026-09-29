@@ -6,6 +6,7 @@
 //     or:  supabase secrets set OPENAI_API_KEY=...   (fallback, gpt-4o-mini)
 
 import { PROFILE_CONTEXT } from './profile.ts'
+import { notifyAskAi } from './notify.ts'
 import { consumeDailyQuota, readDailyQuota, refundDailyQuota } from './quota.ts'
 
 // Minimal Deno typings so this file is self-contained in a Node-oriented IDE.
@@ -13,6 +14,9 @@ declare const Deno: {
   env: { get(name: string): string | undefined }
   serve(handler: (req: Request) => Response | Promise<Response>): void
 }
+
+// Supabase Edge Runtime keeps the worker alive for promises passed here.
+declare const EdgeRuntime: { waitUntil(promise: Promise<unknown>): void } | undefined
 
 export {}
 
@@ -317,6 +321,13 @@ async function handleRequest(req: Request): Promise<Response> {
         await refundDailyQuota(req, quotaKind)
       }
       return jsonResponse({ error: 'No LLM API key configured on the server' }, 500)
+    }
+
+    const notification = notifyAskAi(req, quotaKind, prompt, quota.remaining?.chat)
+    if (typeof EdgeRuntime !== 'undefined') {
+      EdgeRuntime.waitUntil(notification)
+    } else {
+      await notification
     }
 
     return jsonResponse({ answer, remaining: quota.remaining ?? null }, 200)

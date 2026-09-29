@@ -206,9 +206,7 @@ function AskAiChat() {
               {loading ? 'Asking…' : 'Ask'}
             </button>
           </form>
-          <p className="ai-region-note">
-            AI-generated. May be unavailable in a few regions where the underlying model is not supported.
-          </p>
+          <p className="ai-region-note">Questions may be reviewed by Ardit to help improve the assistant.</p>
         </>
       )}
     </article>
