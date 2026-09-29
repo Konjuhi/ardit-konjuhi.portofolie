@@ -6,7 +6,7 @@
 //     or:  supabase secrets set OPENAI_API_KEY=...   (fallback, gpt-4o-mini)
 
 import { PROFILE_CONTEXT } from './profile.ts'
-import { consumeDailyQuota, refundDailyQuota } from './quota.ts'
+import { consumeDailyQuota, readDailyQuota, refundDailyQuota } from './quota.ts'
 
 // Minimal Deno typings so this file is self-contained in a Node-oriented IDE.
 declare const Deno: {
@@ -272,6 +272,11 @@ async function handleRequest(req: Request): Promise<Response> {
     return jsonResponse({ error: 'Invalid JSON body' }, 400)
   }
 
+  if (body.type === 'quota') {
+    const remaining = await readDailyQuota(req)
+    return jsonResponse({ remaining: remaining ?? null }, 200)
+  }
+
   const rawPrompt = typeof body.prompt === 'string' ? body.prompt.trim() : ''
   const type = body.type === 'fit-assessment' ? 'fit-assessment' : 'chat'
 
@@ -290,16 +295,17 @@ async function handleRequest(req: Request): Promise<Response> {
   let reserved = false
   try {
     const quota = await consumeDailyQuota(req, quotaKind)
-    if (quota === 'blocked') {
+    if (quota.status === 'blocked') {
       return jsonResponse(
         {
           code: 'daily_limit',
           error: 'Daily question limit reached — come back tomorrow.',
+          remaining: quota.remaining ?? null,
         },
         429,
       )
     }
-    reserved = quota === 'allowed'
+    reserved = quota.status === 'allowed'
 
     let answer: string
     if (geminiKey) {
@@ -313,7 +319,7 @@ async function handleRequest(req: Request): Promise<Response> {
       return jsonResponse({ error: 'No LLM API key configured on the server' }, 500)
     }
 
-    return jsonResponse({ answer }, 200)
+    return jsonResponse({ answer, remaining: quota.remaining ?? null }, 200)
   } catch (error) {
     if (reserved) {
       await refundDailyQuota(req, quotaKind)

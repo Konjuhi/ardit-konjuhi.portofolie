@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { askAi, isDailyLimitError, MAX_CHAT_CHARS } from '../lib/askAi'
-import { consume, exhaust, getRemaining, MAX_DAILY_CHAT } from '../lib/aiQuota'
+import { askAi, fetchServerQuota, isDailyLimitError, MAX_CHAT_CHARS } from '../lib/askAi'
+import { consume, exhaust, getRemaining, MAX_DAILY_CHAT, syncRemaining } from '../lib/aiQuota'
 import { LinkedText } from '../lib/linkify'
 import { isSupabaseConfigured } from '../lib/supabaseClient'
 
@@ -82,6 +82,18 @@ function AskAiChat() {
   }
 
   useEffect(() => {
+    let active = true
+    void fetchServerQuota().then((server) => {
+      if (active && server) {
+        setRemaining(syncRemaining('chat', server.chat))
+      }
+    })
+    return () => {
+      active = false
+    }
+  }, [])
+
+  useEffect(() => {
     scrollLogToBottom()
     const timeoutId = window.setTimeout(scrollLogToBottom, 50)
     return () => window.clearTimeout(timeoutId)
@@ -104,8 +116,9 @@ function AskAiChat() {
     focusInput()
 
     try {
-      const answer = await askAi(trimmed, 'chat')
-      setRemaining(consume('chat') ?? 0)
+      const { answer, remaining: server } = await askAi(trimmed, 'chat')
+      const local = consume('chat') ?? 0
+      setRemaining(server ? syncRemaining('chat', server.chat) : local)
       setMessages((prev) => [...prev, { role: 'ai', text: answer }])
     } catch (err) {
       if (isDailyLimitError(err)) {

@@ -63,7 +63,50 @@ export function isDailyLimitError(error: unknown): boolean {
   return error instanceof Error && error.message === USER_MESSAGES.daily_limit
 }
 
-export async function askAi(prompt: string, type: AskType): Promise<string> {
+export type ServerRemaining = {
+  chat: number
+  fit: number
+}
+
+export type AskAiResult = {
+  answer: string
+  remaining?: ServerRemaining
+}
+
+function remainingFrom(value: unknown): ServerRemaining | undefined {
+  if (!value || typeof value !== 'object') {
+    return undefined
+  }
+  const { chat, fit } = value as { chat?: unknown; fit?: unknown }
+  if (typeof chat !== 'number' || typeof fit !== 'number') {
+    return undefined
+  }
+  return { chat, fit }
+}
+
+let serverQuotaRequest: Promise<ServerRemaining | undefined> | undefined
+
+async function requestServerQuota(): Promise<ServerRemaining | undefined> {
+  if (!supabase) {
+    return undefined
+  }
+  try {
+    const { data, error } = await supabase.functions.invoke('ask-ai', { body: { type: 'quota' } })
+    if (error) {
+      return undefined
+    }
+    return remainingFrom((data as { remaining?: unknown })?.remaining)
+  } catch {
+    return undefined
+  }
+}
+
+export function fetchServerQuota(): Promise<ServerRemaining | undefined> {
+  serverQuotaRequest ??= requestServerQuota()
+  return serverQuotaRequest
+}
+
+export async function askAi(prompt: string, type: AskType): Promise<AskAiResult> {
   if (!supabase) {
     throw new Error('The AI assistant is not configured yet.')
   }
@@ -103,7 +146,7 @@ export async function askAi(prompt: string, type: AskType): Promise<string> {
       throw failureFrom('unavailable')
     }
 
-    return answer
+    return { answer, remaining: remainingFrom((data as { remaining?: unknown })?.remaining) }
   } catch (error) {
     if (error instanceof Error && Object.values(USER_MESSAGES).includes(error.message)) {
       throw error

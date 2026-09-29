@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { askAi, isDailyLimitError, MAX_FIT_CHARS } from '../lib/askAi'
-import { consume, exhaust, getRemaining, MAX_DAILY_FIT } from '../lib/aiQuota'
+import { useEffect, useState } from 'react'
+import { askAi, fetchServerQuota, isDailyLimitError, MAX_FIT_CHARS } from '../lib/askAi'
+import { consume, exhaust, getRemaining, MAX_DAILY_FIT, syncRemaining } from '../lib/aiQuota'
 import { LinkedText } from '../lib/linkify'
 import { isSupabaseConfigured } from '../lib/supabaseClient'
 
@@ -10,6 +10,18 @@ function JobFitAssessment() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [remaining, setRemaining] = useState(() => getRemaining('fit'))
+
+  useEffect(() => {
+    let active = true
+    void fetchServerQuota().then((server) => {
+      if (active && server) {
+        setRemaining(syncRemaining('fit', server.fit))
+      }
+    })
+    return () => {
+      active = false
+    }
+  }, [])
 
   const quotaExhausted = remaining <= 0
   const disabled = !isSupabaseConfigured || loading || quotaExhausted
@@ -25,8 +37,9 @@ function JobFitAssessment() {
     setLoading(true)
 
     try {
-      const answer = await askAi(trimmed, 'fit-assessment')
-      setRemaining(consume('fit') ?? 0)
+      const { answer, remaining: server } = await askAi(trimmed, 'fit-assessment')
+      const local = consume('fit') ?? 0
+      setRemaining(server ? syncRemaining('fit', server.fit) : local)
       setResult(answer)
     } catch (err) {
       if (isDailyLimitError(err)) {
