@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import AskAiChat from './components/AskAiChat'
 import AskAiTip from './components/AskAiTip'
 import JobFitAssessment from './components/JobFitAssessment'
-import { hasSeenAskAiTip, markAskAiTipSeen } from './lib/askAiTip'
 import './App.css'
 
 type ThemeMode = 'light' | 'dark'
@@ -372,15 +371,11 @@ function App() {
   }, [theme])
 
   useEffect(() => {
-    if (hasSeenAskAiTip()) {
-      return
-    }
     const timeoutId = window.setTimeout(() => setShowAiTip(true), 800)
     return () => window.clearTimeout(timeoutId)
   }, [])
 
   const dismissAiTip = (openChat = false) => {
-    markAskAiTipSeen()
     setShowAiTip(false)
     if (openChat) {
       setMenuOpen(false)
