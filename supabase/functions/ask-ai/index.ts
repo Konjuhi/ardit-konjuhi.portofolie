@@ -88,9 +88,11 @@ web delivery on ClubJam AND Fleet Rewards) to give a richer, well-rounded
 picture.
 
 Never mention Flybuy or Radius Networks in a PayByPhone answer. Flybuy
-belongs only to FNGR Food / Finger Food. For PayByPhone native work, say
-only that he contributed to migrating the app from native Android and iOS
-to a unified Flutter codebase.
+belongs only to FNGR Food / Finger Food, integrated with Pigeon. For
+PayByPhone native work, say he integrated Flutter features into the
+existing native iOS and Android apps using Method Channels (Swift and
+Kotlin where needed), then contributed to rewriting the app entirely
+in Flutter.
 
 If asked about PayByPhone components, Fluxus, Widgetbook, the design
 system, or his role there, include this:

@@ -55,9 +55,9 @@ const featuredProjects: FeaturedProject[] = [
     widgetbookUrl:
       'http://fleetcor-cvp-component-library.s3-website.eu-central-1.amazonaws.com/#/?path=widgets/badge/fluxusbadge/fluxusbadge-examples',
     impact: [
-      "Served as one of two primary developers of PayByPhone's Flutter design system, building and documenting reusable components with Widgetbook.",
-      'Contributed to migrating the native iOS and Android apps to a unified Flutter codebase, including Platform Channel integrations.',
-      'Delivered Apple Pay and Google Pay integrations, parking-session extensions, and vehicle management.',
+      "Served as one of two primary developers of PayByPhone's Flutter design system, building 61 reusable components and documenting them in Widgetbook.",
+      'Integrated Flutter features into the existing native iOS and Android apps using Method Channels, then helped rewrite the app in Flutter.',
+      'Delivered Apple Pay and Google Pay, parking-session extensions, and vehicle management.',
       'Built EV charging, fuel prices, car insurance, and MOT and servicing features.',
     ],
   },
@@ -133,12 +133,12 @@ const experiences: ExperienceItem[] = [
     ],
     highlights: [
       'Joined Moxie Labs as a freelance Senior Mobile Engineer in June 2025 and transitioned to full-time employment in April 2026.',
-      "Engineer and maintain production Flutter applications for the FNGRFOOD platform and major restaurant brands, including Hattie B's Hot Chicken and honeygrow.",
-      'Build end-to-end customer ordering experiences, implementing real-time group ordering, menu customization, basket management, and secure payment integrations.',
+      "Engineer and maintain production Flutter applications for the FNGR Food white-label platform and major restaurant brands, including Hattie B's Hot Chicken and honeygrow.",
+      'Build end-to-end customer ordering experiences with Signals and BLoC: real-time group ordering, menu customization, basket management, and secure payment integrations.',
+      'Contributed Honeygrow customer-facing features including rewards, real-time order tracking, and iOS Live Activities.',
       'Integrated the Flybuy native SDK with Flutter using Pigeon, bridging Flutter with native iOS and Android implementations in Swift and Kotlin.',
       'Create reusable AI agent skills and automated development workflows using Claude Code and other AI tools, integrating MCP servers to support implementation, testing, debugging, and code review.',
-      'Set up and use Sentry for production observability, error tracking, performance monitoring, and troubleshooting.',
-      'Set up automated CI/CD pipelines using GitHub Actions to run test suites, generate production builds, and deploy releases directly to the App Store and Google Play Store.',
+      'Set up Sentry for production observability plus GitHub Actions CI/CD to test, build, and release to the App Store and Google Play.',
     ],
   },
   {
@@ -151,12 +151,12 @@ const experiences: ExperienceItem[] = [
     period: 'Jun 2024 — Mar 2026',
     products: [{ name: 'PayByPhone', url: 'https://www.paybyphone.com/', note: 'Powered by Corpay' }],
     highlights: [
-      'Worked on the PayByPhone mobile application through RiTech International AG for Corpay.',
+      'Worked on the PayByPhone mobile application through RiTech International AG for Corpay, serving customers in 1,200+ cities globally.',
       'Integrated Flutter features into the existing native iOS and Android applications using Method Channels, contributing to Swift and Kotlin code where platform-specific changes were required.',
-      'Served as one of two primary developers of the Flutter design system, building reusable components and documenting them with Widgetbook.',
+      'Served as one of two primary developers of the Flutter design system, building 61 reusable components and documenting them in Widgetbook.',
       'Subsequently contributed to rewriting the application entirely in Flutter, using the shared design system to deliver a consistent experience across iOS and Android.',
-      'Collaborated with product, design, and engineering teams to develop and deliver mobile features.',
-      'Contributed to parking, EV charging, fuel prices, car insurance, and MOT and servicing features.',
+      'Contributed to parking, EV charging, fuel prices, car insurance, and MOT and servicing features, including Apple Pay and Google Pay.',
+      'Collaborated with product, design, and engineering teams to deliver mobile features.',
     ],
   },
   {
@@ -167,12 +167,10 @@ const experiences: ExperienceItem[] = [
     period: 'Sep 2023 — Jun 2024',
     products: [{ name: 'Clubjam' }, { name: 'Corluna' }],
     highlights: [
-      'Worked on the ClubJam app for orchestras and music ensembles using Flutter.',
-      'Developed features for event scheduling and instrument rental management.',
-      'Built responsive applications for iOS, Android, and Web.',
+      'Developed Corluna for pet-health and recurring-care management (nutrition tracking, subscriptions, worm testing) using Riverpod.',
+      'Built ClubJam for orchestras and music ensembles — event scheduling, instrument rentals, and digital sheet-music distribution on mobile and web.',
       'Initially implemented backend functionality using Supabase, then migrated the application to Firebase.',
-      'Used Firebase services including Cloud Firestore, Cloud Functions, and Firebase Cloud Messaging (FCM).',
-      'Implemented push notifications and backend functionality across multiple platforms.',
+      'Used Cloud Firestore, Cloud Functions, and Firebase Cloud Messaging (FCM) for push notifications and backend functionality across platforms.',
     ],
   },
   {
@@ -199,11 +197,10 @@ const experiences: ExperienceItem[] = [
       { name: 'QHealth' },
     ],
     highlights: [
-      'Worked on multiple Flutter apps including BKS App, InsureX SIP, Ambra App, TrackerX, and QHealth.',
-      'Focused on features like accident reporting, insurance claims, task management, time tracking, and clinic session management.',
-      'Integrated RESTful APIs and GraphQL services to connect Flutter applications with backend systems and handle application data.',
-      'Built TrackerX for both web and mobile using Firebase to support real-time data and cross-platform collaboration.',
-      'Delivered all apps across Android, iOS, and other platforms using a consistent cross-platform development approach.',
+      'Delivered BKS and an insurance-claims app (accident reporting, claims submission and processing, Provider) — both published on the App Store and Play Store.',
+      'Developed task-assignment and progress-tracking features for Ambra (GetX) and Firebase-powered TrackerX for team management, time tracking, and communication across mobile and web.',
+      'Built QHealth room- and session-management apps (Riverpod) covering scheduling, check-in/out, diagnostics, syndrome selection, and audio recording.',
+      'Integrated RESTful APIs and GraphQL services to connect Flutter applications with backend systems.',
     ],
   },
 ]
@@ -211,7 +208,7 @@ const experiences: ExperienceItem[] = [
 const skillGroups: SkillGroup[] = [
   {
     title: 'Languages & frameworks',
-    skills: ['Flutter', 'Dart', 'Swift', 'SwiftUI', 'Kotlin', 'Jetpack Compose', 'Java', 'Mobile Development', 'Android', 'iOS', 'Web'],
+    skills: ['Flutter', 'Dart', 'Swift', 'SwiftUI', 'UIKit', 'Kotlin', 'Jetpack Compose', 'Java', 'Android', 'iOS', 'Web'],
   },
   {
     title: 'Backend & data',
@@ -219,11 +216,11 @@ const skillGroups: SkillGroup[] = [
   },
   {
     title: 'Architecture & delivery',
-    skills: ['Clean Architecture', 'MVVM', 'Widgetbook', 'CI/CD', 'App Store & Play Store releases', 'Version Control (Git/GitHub)'],
+    skills: ['Clean Architecture', 'MVVM', 'BLoC', 'Signals', 'Riverpod', 'Widgetbook', 'Method Channels', 'Pigeon', 'Sentry', 'CI/CD', 'App Store & Play Store releases'],
   },
   {
     title: 'Ways of working',
-    skills: ['Communication', 'Problem Solving', 'Team Collaboration'],
+    skills: ['AI agent skills', 'Claude Code', 'MCP servers', 'Communication', 'Problem Solving', 'Team Collaboration'],
   },
 ]
 
@@ -425,7 +422,7 @@ function App() {
   }, [chatOpen, showAiTip])
 
   const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
-  const cvUrl = asset('/Ardit-Konjuhi-CV.pdf?v=20260928-1')
+  const cvUrl = asset('/Ardit-Konjuhi-CV.pdf?v=20261002-1')
 
   useEffect(() => {
     const revealElements = Array.from(document.querySelectorAll<HTMLElement>('.reveal'))
@@ -862,7 +859,8 @@ function App() {
               <p>
                 Senior Mobile Engineer with 6 years of software development experience, including more than 5 years
                 specializing in mobile development with Flutter, iOS, and Android, using Dart, SwiftUI, and Kotlin.
-                Builds maintainable, testable apps with MVVM — Views, ViewModels, Repositories, and Services.
+                Experienced in mobile architecture, reusable white-label platforms, design systems, payment
+                integrations, CI/CD, production monitoring, and App Store / Play Store delivery.
               </p>
               <div className="cv-actions">
                 <a className="btn btn-primary" href={cvUrl} download data-analytics="cv:download">
