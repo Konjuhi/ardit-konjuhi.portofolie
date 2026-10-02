@@ -55,9 +55,10 @@ const featuredProjects: FeaturedProject[] = [
     widgetbookUrl:
       'http://fleetcor-cvp-component-library.s3-website.eu-central-1.amazonaws.com/#/?path=widgets/badge/fluxusbadge/fluxusbadge-examples',
     impact: [
-      'Rewrote the app in Flutter using the Fluxus design system, serving as one of the main developers maintaining design components through Widgetbook.',
-      'Contributed features such as Google Pay, Apple Pay, remote session extensions, and EV charging flows.',
-      'Helped evolve the app into a full parking and vehicle management experience used in 1,200+ cities.',
+      "Served as one of two primary developers of PayByPhone's Flutter design system, building and documenting reusable components with Widgetbook.",
+      'Contributed to migrating the native iOS and Android apps to a unified Flutter codebase, including Platform Channel integrations.',
+      'Delivered Apple Pay and Google Pay integrations, parking-session extensions, and vehicle management.',
+      'Built EV charging, fuel prices, car insurance, and MOT and servicing features.',
     ],
   },
   {
@@ -69,9 +70,10 @@ const featuredProjects: FeaturedProject[] = [
     appStoreUrl: 'https://apps.apple.com/us/app/honeygrow/id1391932075',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.honeygrow.hgmg.android.app&hl=en',
     impact: [
-      'Contributing to an already-built Honeygrow mobile app across App Store and Google Play.',
-      'Delivering menu browsing, customization, secure checkout, rewards, and push notifications.',
-      'Adding live activity support for real-time order status updates.',
+      "Contributing to the ongoing development and maintenance of honeygrow's Flutter mobile ordering and in-store self-service kiosk apps.",
+      'Implemented real-time order tracking with Live Activities and Dynamic Island on iOS and lock-screen notifications on Android.',
+      'Enhanced kiosk ordering, basket, checkout, and payment flows.',
+      'Working on native platform and API integrations, order-state sync, performance, Sentry observability, and production releases.',
     ],
   },
   {
@@ -83,9 +85,11 @@ const featuredProjects: FeaturedProject[] = [
     appStoreUrl: 'https://apps.apple.com/us/app/hattie-bs-hot-chicken/id1550059818',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.thanx.hattieb&hl=en',
     impact: [
-      "Contributing to Hattie B's mobile app from start to finish (end-to-end).",
-      'Delivering mobile features aligned with brand consistency and high performance.',
-      'Focusing on reliable, production-ready app behavior and smooth user flows.',
+      "Developing and maintaining Hattie B's digital ordering experience, built on the FNGRFOOD platform.",
+      "Implemented a white-label architecture in FNGRFOOD so Hattie B's and future restaurant brands launch from one shared Flutter codebase.",
+      'Mobile and self-service kiosk apps with ordering, loyalty, group ordering, basket, payment, checkout, and in-app notifications.',
+      "Engineered a Pigeon-based integration with Flybuy's native iOS and Android SDKs for location-aware arrival and pickup.",
+      'Also own API and payment-terminal integrations, architecture, performance, Sentry diagnostics, CI/CD, and store releases.',
     ],
   },
   {
@@ -128,9 +132,13 @@ const experiences: ExperienceItem[] = [
       },
     ],
     highlights: [
-      'Working on Honeygrow and Hattie B mobile experiences with support for pickup and delivery.',
-      'Implemented secure checkout, rewards, notifications, and live activity updates.',
-      'Collaborating closely with product and engineering teams to keep apps fast and reliable.',
+      'Joined Moxie Labs as a freelance Senior Mobile Engineer in June 2025 and transitioned to full-time employment in April 2026.',
+      "Engineer and maintain production Flutter applications for the FNGRFOOD platform and major restaurant brands, including Hattie B's Hot Chicken and honeygrow.",
+      'Build end-to-end customer ordering experiences, implementing real-time group ordering, menu customization, basket management, and secure payment integrations.',
+      'Integrated the Flybuy native SDK with Flutter using Pigeon, bridging Flutter with native iOS and Android implementations in Swift and Kotlin.',
+      'Create reusable AI agent skills and automated development workflows using Claude Code and other AI tools, integrating MCP servers to support implementation, testing, debugging, and code review.',
+      'Set up and use Sentry for production observability, error tracking, performance monitoring, and troubleshooting.',
+      'Set up automated CI/CD pipelines using GitHub Actions to run test suites, generate production builds, and deploy releases directly to the App Store and Google Play Store.',
     ],
   },
   {
@@ -143,9 +151,12 @@ const experiences: ExperienceItem[] = [
     period: 'Jun 2024 — Mar 2026',
     products: [{ name: 'PayByPhone', url: 'https://www.paybyphone.com/', note: 'Powered by Corpay' }],
     highlights: [
-      'Rewrote the app in Flutter using the Fluxus design system, acting as one of the main developers maintaining design components via Widgetbook.',
-      'Built secure payment features including Google Pay and Apple Pay, plus remote session and EV charging capabilities.',
-      'Supported the migration from native stack toward Flutter for a globally used parking platform.',
+      'Worked on the PayByPhone mobile application through RiTech International AG for Corpay.',
+      'Integrated Flutter features into the existing native iOS and Android applications using Method Channels, contributing to Swift and Kotlin code where platform-specific changes were required.',
+      'Served as one of two primary developers of the Flutter design system, building reusable components and documenting them with Widgetbook.',
+      'Subsequently contributed to rewriting the application entirely in Flutter, using the shared design system to deliver a consistent experience across iOS and Android.',
+      'Collaborated with product, design, and engineering teams to develop and deliver mobile features.',
+      'Contributed to parking, EV charging, fuel prices, car insurance, and MOT and servicing features.',
     ],
   },
   {
@@ -156,9 +167,12 @@ const experiences: ExperienceItem[] = [
     period: 'Sep 2023 — Jun 2024',
     products: [{ name: 'Clubjam' }, { name: 'Corluna' }],
     highlights: [
-      'Built pet-health and subscription-focused mobile features.',
-      'Developed cross-platform capabilities for orchestra and music ensemble workflows.',
-      'Delivered consistent user experience across mobile and web surfaces.',
+      'Worked on the ClubJam app for orchestras and music ensembles using Flutter.',
+      'Developed features for event scheduling and instrument rental management.',
+      'Built responsive applications for iOS, Android, and Web.',
+      'Initially implemented backend functionality using Supabase, then migrated the application to Firebase.',
+      'Used Firebase services including Cloud Firestore, Cloud Functions, and Firebase Cloud Messaging (FCM).',
+      'Implemented push notifications and backend functionality across multiple platforms.',
     ],
   },
   {
@@ -185,9 +199,11 @@ const experiences: ExperienceItem[] = [
       { name: 'QHealth' },
     ],
     highlights: [
-      'Shipped multiple cross-platform apps across insurance, health, and operations domains.',
-      'Implemented real-world workflows such as claims, reporting, room/session management, and task tracking.',
-      'Released production builds on both App Store and Play Store while maintaining high quality standards.',
+      'Worked on multiple Flutter apps including BKS App, InsureX SIP, Ambra App, TrackerX, and QHealth.',
+      'Focused on features like accident reporting, insurance claims, task management, time tracking, and clinic session management.',
+      'Integrated RESTful APIs and GraphQL services to connect Flutter applications with backend systems and handle application data.',
+      'Built TrackerX for both web and mobile using Firebase to support real-time data and cross-platform collaboration.',
+      'Delivered all apps across Android, iOS, and other platforms using a consistent cross-platform development approach.',
     ],
   },
 ]
