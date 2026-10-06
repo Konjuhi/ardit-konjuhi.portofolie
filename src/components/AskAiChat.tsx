@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { askAi, MAX_CHAT_CHARS } from '../lib/askAi'
-import { consume, getRemaining, MAX_DAILY_CHAT } from '../lib/aiQuota'
+import { askAi, fetchServerQuota, isDailyLimitError, MAX_CHAT_CHARS } from '../lib/askAi'
+import { consume, exhaust, getRemaining, MAX_DAILY_CHAT, syncRemaining } from '../lib/aiQuota'
 import { LinkedText } from '../lib/linkify'
 import { isSupabaseConfigured } from '../lib/supabaseClient'
 
@@ -15,6 +15,7 @@ const suggestionPool = [
   'What are his honest gaps?',
   'What domains has he worked in?',
   'Has he worked with design systems?',
+  'How do you white-label Flutter apps?',
   'What did he build at PayByPhone?',
   'Has he built food ordering apps?',
   'How does he structure his apps?',
@@ -82,6 +83,18 @@ function AskAiChat() {
   }
 
   useEffect(() => {
+    let active = true
+    void fetchServerQuota().then((server) => {
+      if (active && server) {
+        setRemaining(syncRemaining('chat', server.chat))
+      }
+    })
+    return () => {
+      active = false
+    }
+  }, [])
+
+  useEffect(() => {
     scrollLogToBottom()
     const timeoutId = window.setTimeout(scrollLogToBottom, 50)
     return () => window.clearTimeout(timeoutId)
@@ -104,11 +117,16 @@ function AskAiChat() {
     focusInput()
 
     try {
-      const answer = await askAi(trimmed, 'chat')
-      setRemaining(consume('chat') ?? 0)
+      const { answer, remaining: server } = await askAi(trimmed, 'chat')
+      const local = consume('chat') ?? 0
+      setRemaining(server ? syncRemaining('chat', server.chat) : local)
       setMessages((prev) => [...prev, { role: 'ai', text: answer }])
     } catch (err) {
-      setRemaining(getRemaining('chat'))
+      if (isDailyLimitError(err)) {
+        setRemaining(exhaust('chat'))
+      } else {
+        setRemaining(getRemaining('chat'))
+      }
       setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
     } finally {
       setLoading(false)
@@ -189,9 +207,7 @@ function AskAiChat() {
               {loading ? 'Asking…' : 'Ask'}
             </button>
           </form>
-          <p className="ai-region-note">
-            AI-generated. May be unavailable in a few regions where the underlying model is not supported.
-          </p>
+          <p className="ai-region-note">Questions may be reviewed by Ardit to help improve the assistant.</p>
         </>
       )}
     </article>

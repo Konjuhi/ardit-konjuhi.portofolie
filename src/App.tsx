@@ -15,6 +15,9 @@ type FeaturedProject = {
   appStoreUrl?: string
   playStoreUrl?: string
   widgetbookUrl?: string
+  /** Opens in a new tab; browsers preview PDF inline. */
+  whiteLabelDocPath?: string
+  whiteLabelDocLabel?: string
   impact: string[]
 }
 
@@ -53,6 +56,8 @@ const featuredProjects: FeaturedProject[] = [
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.paybyphone&hl=en',
     widgetbookUrl:
       'http://fleetcor-cvp-component-library.s3-website.eu-central-1.amazonaws.com/#/?path=widgets/badge/fluxusbadge/fluxusbadge-examples',
+    whiteLabelDocPath: '/whitelabel/corpay-paybyphone-whitelabel.pdf',
+    whiteLabelDocLabel: 'White-label token pipeline',
     impact: [
       'Rewrote the app in Flutter using the Fluxus design system, serving as one of the main developers maintaining design components through Widgetbook.',
       'Contributed features such as Google Pay, Apple Pay, remote session extensions, and EV charging flows.',
@@ -81,6 +86,8 @@ const featuredProjects: FeaturedProject[] = [
     logoAlt: "Hattie B's logo",
     appStoreUrl: 'https://apps.apple.com/us/app/hattie-bs-hot-chicken/id1550059818',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.thanx.hattieb&hl=en',
+    whiteLabelDocPath: '/whitelabel/fingerfood-whitelabel.pdf',
+    whiteLabelDocLabel: 'FNGR white-label architecture',
     impact: [
       "Contributing to Hattie B's mobile app from start to finish (end-to-end).",
       'Delivering mobile features aligned with brand consistency and high performance.',
@@ -389,7 +396,7 @@ function App() {
   }, [chatOpen])
 
   const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
-  const cvUrl = asset('/Ardit-Konjuhi-CV.pdf?v=20260912-1')
+  const cvUrl = asset('/Ardit-Konjuhi-CV.pdf?v=20260928-1')
 
   useEffect(() => {
     const revealElements = Array.from(document.querySelectorAll<HTMLElement>('.reveal'))
@@ -656,6 +663,17 @@ function App() {
                     {project.widgetbookUrl ? (
                       <a href={project.widgetbookUrl} target="_blank" rel="noreferrer noopener">
                         View Components
+                        <IconExternal />
+                      </a>
+                    ) : null}
+                    {project.whiteLabelDocPath ? (
+                      <a
+                        href={asset(project.whiteLabelDocPath)}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                        data-analytics={`project:${project.name}:whitelabel-pdf`}
+                      >
+                        {project.whiteLabelDocLabel ?? 'White-label architecture'}
                         <IconExternal />
                       </a>
                     ) : null}
