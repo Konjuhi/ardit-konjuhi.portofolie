@@ -105,6 +105,34 @@ export function getRemaining(kind: QuotaKind): number {
 
 // Spend one slot only after a successful answer. Failures do not count.
 // Returns remaining after spending, or null if today's limit is already used.
+// The server counts per network, so a new browser or Incognito window starts
+// with an empty local record. Adopt the server count when it is stricter.
+export function syncRemaining(kind: QuotaKind, serverRemaining: number): number {
+  const quota = readQuota()
+  const max = maxFor(kind)
+  const serverUsed = Math.min(max, Math.max(0, max - serverRemaining))
+  if (serverUsed > usedFor(quota, kind)) {
+    if (kind === 'fit') {
+      quota.fit = serverUsed
+    } else {
+      quota.chat = serverUsed
+    }
+    writeQuota(quota)
+  }
+  return Math.max(0, max - usedFor(quota, kind))
+}
+
+export function exhaust(kind: QuotaKind): number {
+  const quota = readQuota()
+  if (kind === 'fit') {
+    quota.fit = MAX_DAILY_FIT
+  } else {
+    quota.chat = MAX_DAILY_CHAT
+  }
+  writeQuota(quota)
+  return 0
+}
+
 export function consume(kind: QuotaKind): number | null {
   const quota = readQuota()
   const max = maxFor(kind)

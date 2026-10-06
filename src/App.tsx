@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import AskAiChat from './components/AskAiChat'
+import AskAiTip from './components/AskAiTip'
 import JobFitAssessment from './components/JobFitAssessment'
 import './App.css'
 
@@ -59,9 +60,10 @@ const featuredProjects: FeaturedProject[] = [
     whiteLabelDocPath: '/whitelabel/corpay-paybyphone-whitelabel.pdf',
     whiteLabelDocLabel: 'White-label token pipeline',
     impact: [
-      'Rewrote the app in Flutter using the Fluxus design system, serving as one of the main developers maintaining design components through Widgetbook.',
-      'Contributed features such as Google Pay, Apple Pay, remote session extensions, and EV charging flows.',
-      'Helped evolve the app into a full parking and vehicle management experience used in 1,200+ cities.',
+      "Served as one of two primary developers of PayByPhone's Flutter design system, building 61 reusable components and documenting them in Widgetbook.",
+      'Integrated Flutter features into the existing native iOS and Android apps using Method Channels, then helped rewrite the app in Flutter.',
+      'Delivered Apple Pay and Google Pay, parking-session extensions, and vehicle management.',
+      'Built EV charging, fuel prices, car insurance, and MOT and servicing features.',
     ],
   },
   {
@@ -73,9 +75,10 @@ const featuredProjects: FeaturedProject[] = [
     appStoreUrl: 'https://apps.apple.com/us/app/honeygrow/id1391932075',
     playStoreUrl: 'https://play.google.com/store/apps/details?id=com.honeygrow.hgmg.android.app&hl=en',
     impact: [
-      'Contributing to an already-built Honeygrow mobile app across App Store and Google Play.',
-      'Delivering menu browsing, customization, secure checkout, rewards, and push notifications.',
-      'Adding live activity support for real-time order status updates.',
+      "Contributing to the ongoing development and maintenance of honeygrow's Flutter mobile ordering and in-store self-service kiosk apps.",
+      'Implemented real-time order tracking with Live Activities and Dynamic Island on iOS and lock-screen notifications on Android.',
+      'Enhanced kiosk ordering, basket, checkout, and payment flows.',
+      'Working on native platform and API integrations, order-state sync, performance, Sentry observability, and production releases.',
     ],
   },
   {
@@ -89,9 +92,11 @@ const featuredProjects: FeaturedProject[] = [
     whiteLabelDocPath: '/whitelabel/fingerfood-whitelabel.pdf',
     whiteLabelDocLabel: 'FNGR white-label architecture',
     impact: [
-      "Contributing to Hattie B's mobile app from start to finish (end-to-end).",
-      'Delivering mobile features aligned with brand consistency and high performance.',
-      'Focusing on reliable, production-ready app behavior and smooth user flows.',
+      "Developing and maintaining Hattie B's digital ordering experience, built on the FNGRFOOD platform.",
+      "Implemented a white-label architecture in FNGRFOOD so Hattie B's and future restaurant brands launch from one shared Flutter codebase.",
+      'Mobile and self-service kiosk apps with ordering, loyalty, group ordering, basket, payment, checkout, and in-app notifications.',
+      "Engineered a Pigeon-based integration with Flybuy's native iOS and Android SDKs for location-aware arrival and pickup.",
+      'Also own API and payment-terminal integrations, architecture, performance, Sentry diagnostics, CI/CD, and store releases.',
     ],
   },
   {
@@ -134,9 +139,13 @@ const experiences: ExperienceItem[] = [
       },
     ],
     highlights: [
-      'Working on Honeygrow and Hattie B mobile experiences with support for pickup and delivery.',
-      'Implemented secure checkout, rewards, notifications, and live activity updates.',
-      'Collaborating closely with product and engineering teams to keep apps fast and reliable.',
+      'Joined Moxie Labs as a freelance Senior Mobile Engineer in June 2025 and transitioned to full-time employment in April 2026.',
+      "Engineer and maintain production Flutter applications for the FNGR Food white-label platform and major restaurant brands, including Hattie B's Hot Chicken and honeygrow.",
+      'Build end-to-end customer ordering experiences with Signals and BLoC: real-time group ordering, menu customization, basket management, and secure payment integrations.',
+      'Contributed Honeygrow customer-facing features including rewards, real-time order tracking, and iOS Live Activities.',
+      'Integrated the Flybuy native SDK with Flutter using Pigeon, bridging Flutter with native iOS and Android implementations in Swift and Kotlin.',
+      'Create reusable AI agent skills and automated development workflows using Claude Code and other AI tools, integrating MCP servers to support implementation, testing, debugging, and code review.',
+      'Set up Sentry for production observability plus GitHub Actions CI/CD to test, build, and release to the App Store and Google Play.',
     ],
   },
   {
@@ -149,9 +158,12 @@ const experiences: ExperienceItem[] = [
     period: 'Jun 2024 — Mar 2026',
     products: [{ name: 'PayByPhone', url: 'https://www.paybyphone.com/', note: 'Powered by Corpay' }],
     highlights: [
-      'Rewrote the app in Flutter using the Fluxus design system, acting as one of the main developers maintaining design components via Widgetbook.',
-      'Built secure payment features including Google Pay and Apple Pay, plus remote session and EV charging capabilities.',
-      'Supported the migration from native stack toward Flutter for a globally used parking platform.',
+      'Worked on the PayByPhone mobile application through RiTech International AG for Corpay, serving customers in 1,200+ cities globally.',
+      'Integrated Flutter features into the existing native iOS and Android applications using Method Channels, contributing to Swift and Kotlin code where platform-specific changes were required.',
+      'Served as one of two primary developers of the Flutter design system, building 61 reusable components and documenting them in Widgetbook.',
+      'Subsequently contributed to rewriting the application entirely in Flutter, using the shared design system to deliver a consistent experience across iOS and Android.',
+      'Contributed to parking, EV charging, fuel prices, car insurance, and MOT and servicing features, including Apple Pay and Google Pay.',
+      'Collaborated with product, design, and engineering teams to deliver mobile features.',
     ],
   },
   {
@@ -162,9 +174,10 @@ const experiences: ExperienceItem[] = [
     period: 'Sep 2023 — Jun 2024',
     products: [{ name: 'Clubjam' }, { name: 'Corluna' }],
     highlights: [
-      'Built pet-health and subscription-focused mobile features.',
-      'Developed cross-platform capabilities for orchestra and music ensemble workflows.',
-      'Delivered consistent user experience across mobile and web surfaces.',
+      'Developed Corluna for pet-health and recurring-care management (nutrition tracking, subscriptions, worm testing) using Riverpod.',
+      'Built ClubJam for orchestras and music ensembles — event scheduling, instrument rentals, and digital sheet-music distribution on mobile and web.',
+      'Initially implemented backend functionality using Supabase, then migrated the application to Firebase.',
+      'Used Cloud Firestore, Cloud Functions, and Firebase Cloud Messaging (FCM) for push notifications and backend functionality across platforms.',
     ],
   },
   {
@@ -191,9 +204,10 @@ const experiences: ExperienceItem[] = [
       { name: 'QHealth' },
     ],
     highlights: [
-      'Shipped multiple cross-platform apps across insurance, health, and operations domains.',
-      'Implemented real-world workflows such as claims, reporting, room/session management, and task tracking.',
-      'Released production builds on both App Store and Play Store while maintaining high quality standards.',
+      'Delivered BKS and an insurance-claims app (accident reporting, claims submission and processing, Provider) — both published on the App Store and Play Store.',
+      'Developed task-assignment and progress-tracking features for Ambra (GetX) and Firebase-powered TrackerX for team management, time tracking, and communication across mobile and web.',
+      'Built QHealth room- and session-management apps (Riverpod) covering scheduling, check-in/out, diagnostics, syndrome selection, and audio recording.',
+      'Integrated RESTful APIs and GraphQL services to connect Flutter applications with backend systems.',
     ],
   },
 ]
@@ -201,7 +215,7 @@ const experiences: ExperienceItem[] = [
 const skillGroups: SkillGroup[] = [
   {
     title: 'Languages & frameworks',
-    skills: ['Flutter', 'Dart', 'Swift', 'SwiftUI', 'Kotlin', 'Jetpack Compose', 'Java', 'Mobile Development', 'Android', 'iOS', 'Web'],
+    skills: ['Flutter', 'Dart', 'Swift', 'SwiftUI', 'UIKit', 'Kotlin', 'Jetpack Compose', 'Java', 'Android', 'iOS', 'Web'],
   },
   {
     title: 'Backend & data',
@@ -209,11 +223,11 @@ const skillGroups: SkillGroup[] = [
   },
   {
     title: 'Architecture & delivery',
-    skills: ['Clean Architecture', 'MVVM', 'Widgetbook', 'CI/CD', 'App Store & Play Store releases', 'Version Control (Git/GitHub)'],
+    skills: ['Clean Architecture', 'MVVM', 'BLoC', 'Signals', 'Riverpod', 'Widgetbook', 'Method Channels', 'Pigeon', 'Sentry', 'CI/CD', 'App Store & Play Store releases'],
   },
   {
     title: 'Ways of working',
-    skills: ['Communication', 'Problem Solving', 'Team Collaboration'],
+    skills: ['AI agent skills', 'Claude Code', 'MCP servers', 'Communication', 'Problem Solving', 'Team Collaboration'],
   },
 ]
 
@@ -364,6 +378,7 @@ function App() {
   const [activeNav, setActiveNav] = useState('projects')
   const [navLockTarget, setNavLockTarget] = useState<string | null>(null)
   const [chatOpen, setChatOpen] = useState(false)
+  const [showAiTip, setShowAiTip] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [theme, setTheme] = useState<ThemeMode>(() => {
     const savedTheme = localStorage.getItem('theme-mode')
@@ -376,14 +391,32 @@ function App() {
   }, [theme])
 
   useEffect(() => {
-    if (!chatOpen) {
+    const timeoutId = window.setTimeout(() => setShowAiTip(true), 800)
+    return () => window.clearTimeout(timeoutId)
+  }, [])
+
+  const dismissAiTip = (openChat = false) => {
+    setShowAiTip(false)
+    if (openChat) {
+      setMenuOpen(false)
+      setChatOpen(true)
+    }
+  }
+
+  useEffect(() => {
+    if (!chatOpen && !showAiTip) {
       return
     }
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setChatOpen(false)
+      if (event.key !== 'Escape') {
+        return
       }
+      if (chatOpen) {
+        setChatOpen(false)
+        return
+      }
+      dismissAiTip()
     }
 
     document.body.style.overflow = 'hidden'
@@ -393,10 +426,10 @@ function App() {
       document.body.style.overflow = ''
       window.removeEventListener('keydown', onKeyDown)
     }
-  }, [chatOpen])
+  }, [chatOpen, showAiTip])
 
   const asset = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
-  const cvUrl = asset('/Ardit-Konjuhi-CV.pdf?v=20260928-1')
+  const cvUrl = asset('/Ardit-Konjuhi-CV.pdf?v=20261006-1')
 
   useEffect(() => {
     const revealElements = Array.from(document.querySelectorAll<HTMLElement>('.reveal'))
@@ -540,6 +573,7 @@ function App() {
                 key={link.id}
                 className={activeNav === link.id ? 'active' : ''}
                 href={`#${link.id}`}
+                data-analytics={link.id === 'contact' ? 'contact:navigation' : undefined}
                 onClick={(event) => {
                   event.preventDefault()
                   setMenuOpen(false)
@@ -594,17 +628,17 @@ function App() {
                 View Projects
                 <IconArrowRight />
               </a>
-              <a className="btn btn-secondary" href={cvUrl} target="_blank" rel="noreferrer noopener">
+              <a className="btn btn-secondary" href={cvUrl} target="_blank" rel="noreferrer noopener" data-analytics="cv:open">
                 <IconDownload />
                 Download CV
               </a>
             </div>
             <div className="social-row">
-              <a href="https://github.com/Konjuhi" target="_blank" rel="noreferrer noopener">
+              <a href="https://github.com/Konjuhi" target="_blank" rel="noreferrer noopener" data-analytics="github">
                 <IconGitHub />
                 GitHub
               </a>
-              <a href="https://www.linkedin.com/in/ardit-konjuhi-185a6719b/" target="_blank" rel="noreferrer noopener">
+              <a href="https://www.linkedin.com/in/ardit-konjuhi-185a6719b/" target="_blank" rel="noreferrer noopener" data-analytics="linkedin">
                 <IconLinkedIn />
                 LinkedIn
               </a>
@@ -643,25 +677,25 @@ function App() {
                   ))}
                 </ul>
                 <div className="card-links">
-                  <a className="card-link" href={project.url} target="_blank" rel="noreferrer noopener">
+                  <a className="card-link" href={project.url} target="_blank" rel="noreferrer noopener" data-analytics={`project:${project.name}:website`}>
                     {project.primaryCtaLabel ?? 'Visit website'}
                     <IconExternal />
                   </a>
                   <div className="store-links">
                     {project.appStoreUrl ? (
-                      <a href={project.appStoreUrl} target="_blank" rel="noreferrer noopener">
+                      <a href={project.appStoreUrl} target="_blank" rel="noreferrer noopener" data-analytics={`project:${project.name}:app-store`}>
                         App Store
                         <IconExternal />
                       </a>
                     ) : null}
                     {project.playStoreUrl ? (
-                      <a href={project.playStoreUrl} target="_blank" rel="noreferrer noopener">
+                      <a href={project.playStoreUrl} target="_blank" rel="noreferrer noopener" data-analytics={`project:${project.name}:play-store`}>
                         Google Play
                         <IconExternal />
                       </a>
                     ) : null}
                     {project.widgetbookUrl ? (
-                      <a href={project.widgetbookUrl} target="_blank" rel="noreferrer noopener">
+                      <a href={project.widgetbookUrl} target="_blank" rel="noreferrer noopener" data-analytics={`project:${project.name}:components`}>
                         View Components
                         <IconExternal />
                       </a>
@@ -703,18 +737,18 @@ function App() {
                   ))}
                 </ul>
                 <div className="store-links">
-                  <a href={project.url} target="_blank" rel="noreferrer noopener">
+                  <a href={project.url} target="_blank" rel="noreferrer noopener" data-analytics={`project:${project.name}:website`}>
                     {project.primaryCtaLabel ?? 'Visit website'}
                     <IconExternal />
                   </a>
                   {project.appStoreUrl ? (
-                    <a href={project.appStoreUrl} target="_blank" rel="noreferrer noopener">
+                    <a href={project.appStoreUrl} target="_blank" rel="noreferrer noopener" data-analytics={`project:${project.name}:app-store`}>
                       App Store
                       <IconExternal />
                     </a>
                   ) : null}
                   {project.playStoreUrl ? (
-                    <a href={project.playStoreUrl} target="_blank" rel="noreferrer noopener">
+                    <a href={project.playStoreUrl} target="_blank" rel="noreferrer noopener" data-analytics={`project:${project.name}:play-store`}>
                       Google Play
                       <IconExternal />
                     </a>
@@ -798,7 +832,7 @@ function App() {
                       {product.url ? (
                         <>
                           {' · '}
-                          <a href={product.url} target="_blank" rel="noreferrer noopener">
+                          <a href={product.url} target="_blank" rel="noreferrer noopener" data-analytics={`project:${product.name}:website`}>
                             {product.ctaLabel ?? 'Open'}
                           </a>
                         </>
@@ -806,7 +840,7 @@ function App() {
                       {product.appStoreUrl ? (
                         <>
                           {' · '}
-                          <a href={product.appStoreUrl} target="_blank" rel="noreferrer noopener">
+                          <a href={product.appStoreUrl} target="_blank" rel="noreferrer noopener" data-analytics={`project:${product.name}:app-store`}>
                             App Store
                           </a>
                         </>
@@ -814,7 +848,7 @@ function App() {
                       {product.playStoreUrl ? (
                         <>
                           {' · '}
-                          <a href={product.playStoreUrl} target="_blank" rel="noreferrer noopener">
+                          <a href={product.playStoreUrl} target="_blank" rel="noreferrer noopener" data-analytics={`project:${product.name}:play-store`}>
                             Play Store
                           </a>
                         </>
@@ -843,14 +877,15 @@ function App() {
               <p>
                 Senior Mobile Engineer with 6 years of software development experience, including more than 5 years
                 specializing in mobile development with Flutter, iOS, and Android, using Dart, SwiftUI, and Kotlin.
-                Builds maintainable, testable apps with MVVM — Views, ViewModels, Repositories, and Services.
+                Experienced in mobile architecture, reusable white-label platforms, design systems, payment
+                integrations, CI/CD, production monitoring, and App Store / Play Store delivery.
               </p>
               <div className="cv-actions">
-                <a className="btn btn-primary" href={cvUrl} download>
+                <a className="btn btn-primary" href={cvUrl} download data-analytics="cv:download">
                   <IconDownload />
                   Download CV
                 </a>
-                <a className="btn btn-secondary" href={cvUrl} target="_blank" rel="noreferrer noopener">
+                <a className="btn btn-secondary" href={cvUrl} target="_blank" rel="noreferrer noopener" data-analytics="cv:open">
                   Open full preview
                 </a>
               </div>
@@ -923,7 +958,7 @@ function App() {
               Open to mobile roles and freelance mobile projects. The fastest way to reach me is by email.
             </p>
             <div className="cta-row">
-              <a className="btn btn-primary" href="mailto:arditkonjuhi8@gmail.com">
+              <a className="btn btn-primary" href="mailto:arditkonjuhi8@gmail.com" data-analytics="contact:email">
                 <IconMail />
                 Email me
               </a>
@@ -933,7 +968,7 @@ function App() {
                 <IconMapPin />
                 Maribor, Slovenia
               </span>
-              <a href="tel:+38670882474">
+              <a href="tel:+38670882474" data-analytics="contact:phone">
                 <IconPhone />
                 +386 70 882 474
               </a>
@@ -946,16 +981,19 @@ function App() {
         <div className="footer-inner">
           <p>© 2026 Ardit Konjuhi — Senior Mobile Engineer</p>
           <div className="footer-links">
-            <a href="https://github.com/Konjuhi" target="_blank" rel="noreferrer noopener">
+            <a href="https://github.com/Konjuhi" target="_blank" rel="noreferrer noopener" data-analytics="github">
               GitHub
             </a>
-            <a href="https://www.linkedin.com/in/ardit-konjuhi-185a6719b/" target="_blank" rel="noreferrer noopener">
+            <a href="https://www.linkedin.com/in/ardit-konjuhi-185a6719b/" target="_blank" rel="noreferrer noopener" data-analytics="linkedin">
               LinkedIn
             </a>
-            <a href="mailto:arditkonjuhi8@gmail.com">Email</a>
+            <a href="mailto:arditkonjuhi8@gmail.com" data-analytics="contact:email">Email</a>
           </div>
+          <p className="privacy-note">Anonymous visit analytics only; no names, precise location, or raw IP addresses are stored.</p>
         </div>
       </footer>
+
+      <AskAiTip open={showAiTip} onAsk={() => dismissAiTip(true)} onDismiss={() => dismissAiTip()} />
 
       <div
         className={`chat-drawer-backdrop ${chatOpen ? 'open' : ''}`}

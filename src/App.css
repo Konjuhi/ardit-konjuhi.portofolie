@@ -846,6 +846,11 @@
   margin: 0;
 }
 
+.footer-inner .privacy-note {
+  flex-basis: 100%;
+  font-size: 0.78rem;
+}
+
 .footer-links {
   display: flex;
   flex-wrap: wrap;
@@ -1069,6 +1074,78 @@
   flex: 1;
   max-height: none;
   min-height: 0;
+}
+
+.tip-dialog-root {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+}
+
+.tip-dialog-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+}
+
+.tip-dialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(420px, calc(100vw - 2rem));
+  transform: translate(-50%, -50%);
+  padding: 1.4rem 1.35rem 1.3rem;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: 0 24px 48px -28px rgba(0, 0, 0, 0.7);
+}
+
+.tip-dialog h2 {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.tip-dialog p:not(.eyebrow) {
+  margin: 0.75rem 0 0;
+  color: var(--text-soft);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.tip-dialog-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 1.2rem;
+}
+
+@media (max-width: 720px) {
+  .tip-dialog {
+    top: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    transform: none;
+    border-radius: 20px 20px 0 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    padding-bottom: calc(1.3rem + env(safe-area-inset-bottom));
+  }
+
+  .tip-dialog-actions {
+    flex-direction: column;
+  }
+
+  .tip-dialog-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 .ai-card {

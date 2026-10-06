@@ -1,0 +1,5 @@
+[functions.portfolio-analytics]
+verify_jwt = false
+
+[functions.portfolio-summary]
+verify_jwt = false
